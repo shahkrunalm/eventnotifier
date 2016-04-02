@@ -21,6 +21,7 @@ import com.eventnotifier.util.Constants;
  */
 @WebServlet("/StateController")
 public class StateController extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 
 	private static final Logger LOGGER = Logger

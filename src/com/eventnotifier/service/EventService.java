@@ -9,10 +9,19 @@ import com.eventnotifier.model.Event;
 
 public interface EventService {
 	void addEvent(HttpServletRequest request, HttpServletResponse response);
+
 	Event viewEvent(HttpServletRequest request, HttpServletResponse response);
+
 	Event updateEvent(HttpServletRequest request, HttpServletResponse response);
+
 	void deleteEvent(HttpServletRequest request, HttpServletResponse response);
-	boolean changeStatus(HttpServletRequest request, HttpServletResponse response);
-	List<Event> getEventList(HttpServletRequest request, HttpServletResponse response);
-	List<Event> getMyEventList(HttpServletRequest request, HttpServletResponse response);
+
+	boolean changeStatus(HttpServletRequest request,
+			HttpServletResponse response);
+
+	List<Event> getEventList(HttpServletRequest request,
+			HttpServletResponse response);
+
+	List<Event> getMyEventList(HttpServletRequest request,
+			HttpServletResponse response);
 }

@@ -41,6 +41,19 @@
 				</div>
 				<div id="inner_content">
 					<div class="box">
+						Message: <a
+							href='compose-message.jsp'
+							title="click here to compose message">compose</a> | <a
+							href='<%=request.getContextPath()
+					+ "/MessageController?action=inbox"%>'
+							title="click here to go to inbox">inbox</a> | <a
+							href='<%=request.getContextPath()
+					+ "/MessageController?action=sent"%>'
+							title="click here to view sent message">sent</a>
+					</div>
+				</div>
+				<div id="inner_content">
+					<div class="box">
 						Profile: <a
 							href='<%=request.getContextPath()
 					+ "/UserController?action=view-profile&id=" + user.getId()%>'

@@ -57,8 +57,12 @@ public class UserController extends HttpServlet {
 				} else {
 					HttpSession session = request.getSession();
 					session.setAttribute("user", user);
-					session.setAttribute("lastLogin",
-							DateUtil.getFormattedDate(user.getLastLogin()));
+					if (user.getLastLogin() != null) {
+						session.setAttribute("lastLogin",
+								DateUtil.getFormattedDate(user.getLastLogin()));
+					} else {
+						session.setAttribute("lastLogin", "N.A.");
+					}
 					user.setLastLogin(new Date());
 					userDAO.update(user);
 					if (user.getType() == Constants.ADMIN_USER) {
@@ -76,7 +80,7 @@ public class UserController extends HttpServlet {
 		} else if (action.equals(Constants.SIGNUP)) {
 			this.userService.register(request, response);
 			response.sendRedirect(request.getContextPath()
-					+ "/user-dashboard.jsp");
+					+ "/sign-up-acknowledgement.jsp");
 		} else if (action.equals(Constants.LOGOUT)) {
 			HttpSession session = request.getSession(false);
 			if (session == null) {

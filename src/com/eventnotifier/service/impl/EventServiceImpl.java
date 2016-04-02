@@ -10,16 +10,22 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 import com.eventnotifier.dao.EventDAO;
+import com.eventnotifier.dao.MessageDAO;
 import com.eventnotifier.dao.impl.EventDAOImpl;
+import com.eventnotifier.dao.impl.MessageDAOImpl;
 import com.eventnotifier.model.Event;
+import com.eventnotifier.model.Message;
 import com.eventnotifier.model.User;
 import com.eventnotifier.service.EventService;
 import com.eventnotifier.util.DateUtil;
+import com.eventnotifier.util.MessageUtil;
 
 public class EventServiceImpl implements EventService {
 
 	private static final Logger LOGGER = Logger
 			.getLogger(EventServiceImpl.class);
+
+	private MessageDAO messageDAO = null;
 
 	@Override
 	public void addEvent(HttpServletRequest request,
@@ -85,6 +91,20 @@ public class EventServiceImpl implements EventService {
 		event.setStatus(0);
 		EventDAO eventDAO = new EventDAOImpl();
 		eventDAO.save(event);
+
+		this.messageDAO = new MessageDAOImpl();
+		Message message = getMessage(request, event);
+		this.messageDAO.save(message);
+	}
+
+	private Message getMessage(HttpServletRequest request, Event event) {
+		Message message = new Message();
+		message.setMessageTo(MessageUtil.ADMIN_EMAIL);
+		message.setMessageFrom(MessageUtil.SYSTEM_EMAIL);
+		message.setMessageOn(new Date());
+		message.setSubject(MessageUtil.NEW_EVENT_ADDED);
+		message.setContent(new MessageUtil().getEventMsgContent(request, event, 0));
+		return message;
 	}
 
 	@Override

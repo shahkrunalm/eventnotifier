@@ -1,30 +1,28 @@
 package com.eventnotifier.model;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity()
-@Table(name="state")
+@Table(name = "state")
 @org.hibernate.annotations.Entity(dynamicInsert = true, dynamicUpdate = true, mutable = true)
 public class State {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-	
+	private int stateId;
+
 	private String stateName;
-	
+
 	private int status;
 
-	public int getId() {
-		return id;
-	}
-
-	public void setStateId(int stateId) {
-		this.id = stateId;
-	}
+	@OneToMany(mappedBy = "state")
+	private Set<User> users;
 
 	public String getStateName() {
 		return stateName;
@@ -50,6 +48,21 @@ public class State {
 		this.stateName = stateName;
 		this.status = status;
 	}
-	
-	
+
+	public int getStateId() {
+		return stateId;
+	}
+
+	public void setStateId(int stateId) {
+		this.stateId = stateId;
+	}
+
+	public Set<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
+
 }

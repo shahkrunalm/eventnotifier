@@ -7,13 +7,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
+import com.eventnotifier.dao.MessageDAO;
 import com.eventnotifier.dao.UserDAO;
+import com.eventnotifier.dao.impl.MessageDAOImpl;
 import com.eventnotifier.dao.impl.UserDAOImpl;
+import com.eventnotifier.model.Message;
 import com.eventnotifier.model.User;
+import com.eventnotifier.service.CategoryService;
+import com.eventnotifier.service.StateService;
 import com.eventnotifier.service.UserService;
 import com.eventnotifier.util.DateUtil;
+import com.eventnotifier.util.MessageUtil;
 
 public class UserServiceImpl implements UserService {
+
+	private UserDAO userDAO = null;
+	private CategoryService categoryService = null;
+	private StateService stateService = null;
+	private MessageDAO messageDAO = null;
+	private static final Logger LOGGER = Logger
+			.getLogger(UserServiceImpl.class);
 
 	@Override
 	public void register(HttpServletRequest request,
@@ -26,12 +41,12 @@ public class UserServiceImpl implements UserService {
 		String mobile = request.getParameter("mobile");
 		String address = request.getParameter("address");
 		String city = request.getParameter("city");
-		String state = request.getParameter("state");
+		String stateId = request.getParameter("stateId");
 		String pincode = request.getParameter("pincode");
 		String occupation = request.getParameter("occupation");
 		String education = request.getParameter("education");
 		String email = request.getParameter("email");
-
+		String categoryId = request.getParameter("categoryId");
 		Date birthDate = DateUtil.convertToSQLDate(request
 				.getParameter("birthDate"));
 
@@ -45,23 +60,35 @@ public class UserServiceImpl implements UserService {
 		user.setEmail(email);
 		user.setAddress(address);
 		user.setCity(city);
-		user.setState(state);
+		this.stateService = new StateServiceImpl();
+		user.setState(this.stateService.getState(Integer.parseInt(stateId)));
 		user.setPincode(pincode);
 		user.setOccupation(occupation);
 		user.setEducation(education);
 		user.setMemberSince(new Date());
-		user.setLastLogin(new Date());
 		user.setBirthDate(birthDate);
 		user.setStatus(1);
 		user.setType(2);
+		this.categoryService = new CategoryServiceImpl();
+		user.setCategory(this.categoryService.getCategory(Integer
+				.parseInt(categoryId)));
+		this.userDAO = new UserDAOImpl();
+		this.userDAO.save(user);
+		LOGGER.info("User added successfully.");
 
-		UserDAO userDAO = new UserDAOImpl();
-		userDAO.save(user);
+		this.messageDAO = new MessageDAOImpl();
+		Message message = getMessage(request, user);
+		this.messageDAO.save(message);
+	}
 
-		HttpSession session = request.getSession();
-		session.setAttribute("user", user);
-		session.setAttribute("lastLogin",
-				DateUtil.getFormattedDate(user.getLastLogin()));
+	private Message getMessage(HttpServletRequest request, User user) {
+		Message message = new Message();
+		message.setMessageTo(user.getEmail());
+		message.setMessageFrom(MessageUtil.SYSTEM_EMAIL);
+		message.setMessageOn(new Date());
+		message.setSubject(MessageUtil.WELCOME_MSG);
+		message.setContent(new MessageUtil().getWelcomeMsg(user));
+		return message;
 	}
 
 	@Override
@@ -75,15 +102,15 @@ public class UserServiceImpl implements UserService {
 	public List<User> getUserList(HttpServletRequest request,
 			HttpServletResponse response) {
 		int status = Integer.parseInt(request.getParameter("status"));
-		UserDAO userDAO = new UserDAOImpl();
-		return userDAO.getListByCriteria(new User(), "username", status);
+		this.userDAO = new UserDAOImpl();
+		return this.userDAO.getListByCriteria(new User(), "username", status);
 	}
 
 	@Override
 	public User getUser(HttpServletRequest request, HttpServletResponse response) {
 		int id = Integer.parseInt(request.getParameter("id"));
-		UserDAO userDAO = new UserDAOImpl();
-		return userDAO.getUser(id);
+		this.userDAO = new UserDAOImpl();
+		return this.userDAO.getUser(id);
 	}
 
 	@Override

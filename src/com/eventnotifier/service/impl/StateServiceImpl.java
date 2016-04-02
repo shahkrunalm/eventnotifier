@@ -9,12 +9,13 @@ import org.apache.log4j.Logger;
 
 import com.eventnotifier.dao.StateDAO;
 import com.eventnotifier.dao.impl.StateDAOImpl;
-import com.eventnotifier.model.Event;
 import com.eventnotifier.model.State;
 import com.eventnotifier.service.StateService;
 
 public class StateServiceImpl implements StateService {
 
+	private StateDAO stateDAO = null;
+	
 	private static final Logger LOGGER = Logger
 			.getLogger(StateServiceImpl.class);
 
@@ -25,21 +26,28 @@ public class StateServiceImpl implements StateService {
 		State state = new State();
 		state.setStateName(stateName);
 		state.setStatus(1);
-		StateDAO stateDAO = new StateDAOImpl();
-		stateDAO.save(state);
+		this.stateDAO = new StateDAOImpl();
+		this.stateDAO.save(state);
 		LOGGER.info("State added successfully");
+		loadActiveStates(request, this.stateDAO);
+	}
+
+	private void loadActiveStates(HttpServletRequest request, StateDAO stateDAO) {
+		request.getServletContext().setAttribute("loadedStateList",
+				this.stateDAO.getListByCriteria(new State(), "stateName", 1));
 	}
 
 	@Override
 	public List<State> getStateList(HttpServletRequest request,
 			HttpServletResponse response) {
 		int status = Integer.parseInt(request.getParameter("status"));
-		StateDAO stateDAO = new StateDAOImpl();
-		return stateDAO.getListByCriteria(new State(), "stateName", status);
+		this.stateDAO = new StateDAOImpl();
+		return this.stateDAO
+				.getListByCriteria(new State(), "stateName", status);
 	}
 
 	@Override
-	public Event updateState(HttpServletRequest request,
+	public State updateState(HttpServletRequest request,
 			HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		return null;
@@ -50,6 +58,12 @@ public class StateServiceImpl implements StateService {
 			HttpServletResponse response) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public State getState(int id) {
+		this.stateDAO = new StateDAOImpl();
+		return this.stateDAO.getState(id);
 	}
 
 }

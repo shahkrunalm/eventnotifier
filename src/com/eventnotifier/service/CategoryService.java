@@ -6,15 +6,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.eventnotifier.model.Category;
-import com.eventnotifier.model.Event;
 
 public interface CategoryService {
+
+	Category getCategory(int id);
+
 	void addCategory(HttpServletRequest request, HttpServletResponse response);
 
 	List<Category> getCategoryList(HttpServletRequest request,
 			HttpServletResponse response);
 
-	Event updateCategory(HttpServletRequest request,
+	Category updateCategory(HttpServletRequest request,
 			HttpServletResponse response);
 
 	void deleteCategory(HttpServletRequest request, HttpServletResponse response);

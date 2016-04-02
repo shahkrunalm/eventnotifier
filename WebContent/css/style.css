@@ -7,23 +7,34 @@ a {
 	color: #1D68AB;
 	text-decoration: underline;
 }
-.bold{
-font-weight: bold;
-}
-.boldred{
-font-weight: bold;
-color: red;
-}
-.boldgreen{
-font-weight: bold;
-color: green;
+
+.bold {
+	font-weight: bold;
 }
 
-.left{
-text-align: left;
+.boldred {
+	font-weight: bold;
+	color: red;
 }
+
+.boldgreen {
+	font-weight: bold;
+	color: green;
+}
+
+.logo {
+	font-weight: bold;
+	color: #1D68AB;
+	font-size: 18pt;
+	font-family: "Franklin Gothic Medium","Franklin Gothic","ITC Franklin Gothic",Arial,sans-serif
+}
+
+.left {
+	text-align: left;
+}
+
 .my-error-class {
-    color:#FF0000;  /* red */
+	color: #FF0000; /* red */
 }
 
 a:hover {
@@ -41,7 +52,7 @@ body {
 	font-size: 10pt;
 }
 
-body,input {
+body, input {
 	font-family: Arial, sans-serif;
 }
 
@@ -72,12 +83,11 @@ br.clearfix {
 	border: solid 2px #006699;
 	text-shadow: 0 1px 0 #FFFFFF;
 	background-color: #FFFFFF;
-    border-radius: 7px;
-    display: inline-block;
-    
-    outline: medium none;
-
+	border-radius: 7px;
+	display: inline-block;
+	outline: medium none;
 }
+
 #footer {
 	margin: 50px 0 120px 0;
 	text-align: center;
@@ -89,7 +99,6 @@ br.clearfix {
 	color: #626E7F;
 }
 
-
 #page {
 	position: relative;
 	margin: 20px 0 20px 0;
@@ -97,12 +106,12 @@ br.clearfix {
 	width: 980px;
 }
 
-
 #wrapper {
 	position: relative;
 	margin: 0 auto 0 auto;
 	width: 980px;
 }
+
 #table-5 {
 	width: 100%;
 	background-color: #f5f5f5;
@@ -113,21 +122,26 @@ br.clearfix {
 	-webkit-border-radius: 5px;
 	border: 1px solid #ebebeb;
 }
+
 #table-5 td, #table-5 th {
 	padding: 1px 5px;
 }
+
 #table-5 thead {
-	font: normal 15px Helvetica Neue,Helvetica,sans-serif;
+	font: normal 15px Helvetica Neue, Helvetica, sans-serif;
 	text-shadow: 0 1px 0 white;
 	color: #999;
 }
+
 #table-5 th {
 	text-align: center;
 	border-bottom: 1px solid #1D68AB;
 }
+
 #table-5 td {
 	border-bottom: 1px solid #1D68AB;
 }
+
 #table-5 tr:hover {
 	background-color: #fff;
 }
@@ -163,90 +177,108 @@ br.clearfix {
 }
 
 form {
-    font-size: 12px;
-    margin-bottom: 0;
+	font-size: 12px;
+	margin-bottom: 0;
 }
-form p + p {
-    margin-top: 9px;
+
+form p+p {
+	margin-top: 9px;
 }
+
 label, input, textarea, select {
-    font-size: 13px;
-    line-height: 20px;
-    margin: 0;
+	font-size: 13px;
+	line-height: 20px;
+	margin: 0;
 }
+
 button {
-    border: medium;
+	border: medium;
 }
+
 input, textarea, select {
-    background-color: #FFFFFF;
-    border: 1px solid #CCCCCC;
-    border-radius: 3px 3px 3px 3px;
-    display: inline-block;
-    margin: 0;
-    outline: medium none;
-    padding: 4px;
-    width: 210px;
+	background-color: #FFFFFF;
+	border: 1px solid #CCCCCC;
+	border-radius: 3px 3px 3px 3px;
+	display: inline-block;
+	margin: 0;
+	outline: medium none;
+	padding: 4px;
+	width: 210px;
 }
+
 input[type="checkbox"], input[type="radio"] {
-    background-color: transparent;
-    border: medium none;
-    cursor: pointer;
-    height: auto;
-    line-height: normal;
-    margin: 3px 0;
-    padding: 0;
-    width: auto;
+	background-color: transparent;
+	border: medium none;
+	cursor: pointer;
+	height: auto;
+	line-height: normal;
+	margin: 3px 0;
+	padding: 0;
+	width: auto;
 }
+
 input[type="file"] {
-    background-color: #FFFFFF;
-    box-shadow: none;
+	background-color: #FFFFFF;
+	box-shadow: none;
 }
+
 input[type="button"], input[type="reset"], input[type="submit"] {
 	background-color: #1D68AB;
 	border: medium none;
-    height: auto;
-    width: auto;
-    border-radius: 5px;
-    color: #ffffff;
-    margin: 5px 0px 0px 0px;
-    padding: 5px 10px 5px 10px;
-    font-weight: bold;
+	height: auto;
+	width: auto;
+	border-radius: 5px;
+	color: #ffffff;
+	margin: 5px 0px 0px 0px;
+	padding: 5px 10px 5px 10px;
+	font-weight: bold;
 }
+
 select, input[type="file"] {
-    height: 30px;
-    line-height: 30px;
+	height: 30px;
+	line-height: 30px;
 }
+
 select[multiple] {
-    background-color: #FFFFFF;
-    height: inherit;
+	background-color: #FFFFFF;
+	height: inherit;
 }
+
 .inline-form {
-    float: left;
-    margin: 10px 0;
-    width: 100%;
+	float: left;
+	margin: 10px 0;
+	width: 100%;
 }
+
 textarea {
-    height: auto;
+	height: auto;
 }
+
 .radio, .checkbox {
-    line-height: 18px;
-    margin: 5px 0;
-    padding-left: 18px;
+	line-height: 18px;
+	margin: 5px 0;
+	padding-left: 18px;
 }
+
 .radio input[type="radio"], .checkbox input[type="checkbox"] {
-    float: left;
-    margin-left: -18px;
+	float: left;
+	margin-left: -18px;
 }
+
 .radio-nested, .checkbox-nested {
-    margin-left: 18px;
+	margin-left: 18px;
 }
+
 input, textarea {
-    -moz-transition: background 0.2s linear 0s;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) inset, 0 1px 0 rgba(255, 255, 255, 0.075);
+	-moz-transition: background 0.2s linear 0s;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) inset, 0 1px 0
+		rgba(255, 255, 255, 0.075);
 }
+
 input:focus, textarea:focus {
-    border-color: #1D68AB;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) inset, 0 0 8px rgba(82, 168, 236, 0.6);
-    color: #333333;
-    outline: 0 none;
+	border-color: #1D68AB;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) inset, 0 0 8px
+		rgba(82, 168, 236, 0.6);
+	color: #333333;
+	outline: 0 none;
 }

@@ -57,7 +57,10 @@
 							<td class="bold">Birth Date</td>
 							<td><%=DateUtil.getOnlyDate(userProfile.getBirthDate())%></td>
 						</tr>
-						
+						<tr>
+							<td class="bold">Interested Category</td>
+							<td><%=userProfile.getCategory().getCategoryName()%></td>
+						</tr>
 						<tr>
 							<td class="bold">Education</td>
 							<td><%=userProfile.getEducation()%></td>
@@ -82,7 +85,7 @@
 						</tr>
 						<tr>
 							<td class="bold">State</td>
-							<td><%=userProfile.getState()%></td>
+							<td><%=userProfile.getState().getStateName()%></td>
 						</tr>
 						<tr>
 							<td class="bold">Mobile no.</td>

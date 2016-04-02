@@ -13,6 +13,8 @@
 %>
 </head>
 <%
+	List<Category> categoryList = (List<Category>) application
+	.getAttribute("loadedCategoryList");
 	List<State> stateList = (List<State>) application
 	.getAttribute("loadedStateList");
 %>
@@ -26,7 +28,8 @@
 				birthDate : "required",
 				address : "required",
 				city : "required",
-				state : "required",
+				stateId : "required",
+				categoryId : "required",
 				username : {
 					required : true,
 					minlength : 6
@@ -124,6 +127,18 @@
 								<td><input type="text" name="birthDate" id="birthDate"><br></td>
 							</tr>
 							<tr>
+								<td class="bold">Interested Category</td>
+								<td><select name="categoryId" id="categoryId">
+										<option value="">select</option>
+										<%
+											for (Category category : categoryList) {
+										%><option value="<%=category.getCategoryId()%>"><%=category.getCategoryName()%></option>
+										<%
+											}
+										%>
+								</select></td>
+							</tr>
+							<tr>
 								<td class="bold">Education</td>
 								<td><select name="education">
 										<option value="Graduate">Graduate</option>
@@ -155,11 +170,11 @@
 
 							<tr>
 								<td class="bold">State</td>
-								<td><select name="state" id="state">
+								<td><select name="stateId" id="stateId">
 										<option value="">select</option>
 										<%
 											for (State state : stateList) {
-										%><option value="<%=state.getStateName()%>"><%=state.getStateName()%></option>
+										%><option value="<%=state.getStateId()%>"><%=state.getStateName()%></option>
 										<%
 											}
 										%>

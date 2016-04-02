@@ -14,6 +14,7 @@ public class HibernateUtil {
 					.addAnnotatedClass(com.eventnotifier.model.Event.class)
 					.addAnnotatedClass(com.eventnotifier.model.Category.class)
 					.addAnnotatedClass(com.eventnotifier.model.State.class)
+					.addAnnotatedClass(com.eventnotifier.model.Message.class)
 					.configure().buildSessionFactory();
 			LOGGER.info("Session factory initialized");
 		} catch (Throwable ex) {

@@ -37,7 +37,24 @@
 				.getAttribute("upcomingEventList");
 	%>
 	<div id="wrapper">
-		<div id="page">
+		
+			<div id="rowcontent">
+				<div class="box">
+					<table border="0" width="100%">
+						<tr>
+							<td><span class="logo">Curated Event Notifier</span></td>
+							<td align="right"><a
+								href='<%=request.getContextPath() + "/index.jsp"%>'
+								title="click here to go to home page">Home</a> | <a
+								href='<%=request.getContextPath() + "/login.jsp"%>'
+								title="click here to login">Login</a> | <a
+								href='<%=request.getContextPath() + "/sign-up.jsp"%>'
+								title="click here to sign up">Sign up</a></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+<div id="page">
 			<div id="content">
 				<div class="box">
 					<a href='<%=request.getContextPath() + "/index.jsp"%>'>Home</a> |
@@ -62,12 +79,12 @@
 					<%
 						}
 					%>
-					<br><br>
+					<br> <br>
 					<table border="0" width="100%" id="table-5">
-							<tr>
-								<td align="left" class="bold">Upcoming Events</td>
-							</tr>
-						</table>
+						<tr>
+							<td align="left" class="bold">Upcoming Events</td>
+						</tr>
+					</table>
 					<%
 						if (eventList.size() == 0) {
 					%>No event available, please visit us after sometime.<%
@@ -166,8 +183,7 @@
 			%>
 			<div id="sidebar">
 				<div class="box">
-					<span class="bold">State wise events</span> <br>
-					coming soon
+					<span class="bold">State wise events</span> <br> coming soon
 				</div>
 				<br> <span class="bold">Category wise events</span> <br>
 				coming soon
