@@ -24,6 +24,9 @@
 						</tr>
 					</table>
 					<%
+						if(user == null) {
+							response.sendRedirect(request.getContextPath() + "/login.jsp?code=3");
+						}
 						if (user != null && user.getType() == 1 && event != null) {
 					%>
 					<table border="0">

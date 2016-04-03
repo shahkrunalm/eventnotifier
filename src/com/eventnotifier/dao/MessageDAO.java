@@ -8,6 +8,8 @@ import com.eventnotifier.model.Message;
 public interface MessageDAO extends BaseDAO<Message, Long> {
 
 	void sendEventMessage(Event event);
+	
+	void sendEventStatusMessage(Event event, String messageTo);
 
 	List<Message> getMessageList(String emailId);
 

@@ -161,6 +161,7 @@ public class EventServiceImpl implements EventService {
 			event.setApprovedOn(new Date());
 			eventDAO.update(event);
 			changeStatus = true;
+			
 		} else if (status.equals("2")) {
 			event.setStatus(2);
 			event.setVerifyBy(user.getUsername());

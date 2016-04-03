@@ -52,4 +52,10 @@ public class MessageDAOImpl extends BaseDAOImpl<Message, Long> implements
 				.add(Restrictions.eq("messageFrom", emailId))
 				.add(Restrictions.eq("toDeleteStatus", 0)).list();
 	}
+
+	@Override
+	public void sendEventStatusMessage(Event event, String messageTo) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -23,7 +23,7 @@
 	});
 </script>
 <body>
-<%@ include file="menu.jsp" %>
+	<%@ include file="menu.jsp"%>
 	<div id="wrapper">
 		<div id="page">
 			<div id="content">
@@ -35,6 +35,11 @@
 					</table>
 					<%
 						final String code = request.getParameter("code");
+						if (code != null && code.equals("3"))
+							out.print("To view event details, please login or <a title=\"Click here to sign up\" href=\""
+									+ request.getContextPath()
+									+ "/sign-up.jsp"
+									+ "\">sign up</a>");
 						if (code != null && code.equals("0"))
 							out.print("Your session expired, please login again");
 						else if (code != null && code.equals("1"))
@@ -51,11 +56,11 @@
 							</tr>
 							<tr>
 								<td class="bold" width="10%">Username</td>
-								<td><input name="username" id="username"/></td>
+								<td><input name="username" id="username" /></td>
 							</tr>
 							<tr>
 								<td class="bold">Password</td>
-								<td><input type="password" name="password" id="password"/></td>
+								<td><input type="password" name="password" id="password" /></td>
 							</tr>
 							<tr>
 								<td>&nbsp;</td>
