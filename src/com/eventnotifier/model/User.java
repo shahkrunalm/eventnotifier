@@ -1,13 +1,16 @@
 package com.eventnotifier.model;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -41,6 +44,8 @@ public class User {
 	@ManyToOne
 	@JoinColumn(name = "categoryId")
 	private Category category;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	private Set<Event> events;
 
 	public int getId() {
 		return id;
@@ -200,6 +205,14 @@ public class User {
 
 	public void setState(State state) {
 		this.state = state;
+	}
+
+	public Set<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(Set<Event> events) {
+		this.events = events;
 	}
 
 }

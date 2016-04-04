@@ -20,7 +20,8 @@ public class Category {
 	private int status;
 	@OneToMany(mappedBy = "category")
 	private Set<User> users;
-
+	@OneToMany(mappedBy = "category")
+	private Set<Event> events;
 	public int getStatus() {
 		return status;
 	}

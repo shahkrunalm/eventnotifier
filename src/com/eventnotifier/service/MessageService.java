@@ -5,7 +5,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.eventnotifier.model.Event;
 import com.eventnotifier.model.Message;
+import com.eventnotifier.model.User;
 
 public interface MessageService {
 	List<Message> inbox(HttpServletRequest request, HttpServletResponse response);
@@ -20,4 +22,7 @@ public interface MessageService {
 
 	List<Message> sentMessageList(HttpServletRequest request,
 			HttpServletResponse response);
+
+	void sendEventStatusMessage(HttpServletRequest request, Event event,
+			User user);
 }

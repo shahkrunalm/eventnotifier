@@ -3,9 +3,12 @@ package com.eventnotifier.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -19,19 +22,25 @@ public class Event {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	private String eventName;
-	@Type(type="text")
+	@Type(type = "text")
 	private String description;
 	private Date startDate;
 	private String startTime;
 	private Date endDate;
 	private String endTime;
-	private String category;
+	@ManyToOne
+	@JoinColumn(name = "categoryId")
+	private Category category;
 	private String isChargeable;
 	private String fee;
 	private String address;
 	private String landmark;
-	private String state;
-	private String city;
+	@ManyToOne
+	@JoinColumn(name = "stateId")
+	private State state;
+	@ManyToOne
+	@JoinColumn(name = "cityId")
+	private City city;
 	private String pincode;
 	private String phoneNo;
 	private String filePath;
@@ -40,10 +49,12 @@ public class Event {
 	private String contactPerson;
 	private String website;
 	private String emailId;
-	@Type(type="text")
+	@Type(type = "text")
 	private String termsConditions;
 	private String organizedBy;
-	private String createdBy;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "createdBy", nullable = false)
+	private User user;
 	private Date createdOn;
 	private String verifyBy;
 	private Date verifyOn;
@@ -102,14 +113,6 @@ public class Event {
 		this.endTime = endTime;
 	}
 
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
 	public String getIsChargeable() {
 		return isChargeable;
 	}
@@ -140,22 +143,6 @@ public class Event {
 
 	public void setLandmark(String landmark) {
 		this.landmark = landmark;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
 	}
 
 	public String getPincode() {
@@ -220,14 +207,6 @@ public class Event {
 
 	public void setTermsConditions(String termsConditions) {
 		this.termsConditions = termsConditions;
-	}
-
-	public String getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
 	}
 
 	public Date getCreatedOn() {
@@ -324,6 +303,38 @@ public class Event {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
+	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	@Override

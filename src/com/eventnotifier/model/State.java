@@ -22,7 +22,13 @@ public class State {
 	private int status;
 
 	@OneToMany(mappedBy = "state")
+	private Set<City> cities;
+	
+	@OneToMany(mappedBy = "state")
 	private Set<User> users;
+
+	@OneToMany(mappedBy = "state")
+	private Set<Event> events;
 
 	public String getStateName() {
 		return stateName;
@@ -63,6 +69,22 @@ public class State {
 
 	public void setUsers(Set<User> users) {
 		this.users = users;
+	}
+
+	public Set<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(Set<Event> events) {
+		this.events = events;
+	}
+
+	public Set<City> getCities() {
+		return cities;
+	}
+
+	public void setCities(Set<City> cities) {
+		this.cities = cities;
 	}
 
 }

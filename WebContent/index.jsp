@@ -100,9 +100,9 @@
 								title="view event details"><%=event.getEventName()%></a></td>
 						</tr>
 						<tr>
-							<td colspan="4" align="left"><b>Venue: </b> <%=event.getAddress() + ", " + event.getCity()
+							<td colspan="4" align="left"><b>Venue: </b> <%=event.getAddress() + ", " + event.getCity().getCityName()
 							+ ", " + event.getPincode() + " "
-							+ event.getState()%></td>
+							+ event.getState().getStateName()%></td>
 						</tr>
 						<!-- 
 						<tr>

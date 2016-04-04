@@ -14,6 +14,8 @@ public interface UserService {
 	int changePassword(HttpServletRequest request, HttpServletResponse response);
 
 	User getUser(HttpServletRequest request, HttpServletResponse response);
+	
+	User getUserById(int id);
 
 	List<User> getUserList(HttpServletRequest request,
 			HttpServletResponse response);

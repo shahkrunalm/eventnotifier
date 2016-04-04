@@ -36,7 +36,7 @@
 									if (event.getStatus() == 0) {
 								%>
 								<div id="status">
-									<a href="javascript:changeEventStatus(<%=event.getId()%>,-1)"
+									<a href="javascript:changeEventStatus(<%=event.getId()%>,2)"
 										title="click here to reject event"><img alt="reject it"
 										src="images/reject.png" title="click here to reject event"
 										height="28" width="28" /></a><a
@@ -53,7 +53,7 @@
 					</table>
 					<%
 						if (event != null && user != null
-								&& event.getCreatedBy().equals(user.getUsername())
+								&& event.getUser().getUsername().equals(user.getUsername())
 								|| user != null && user.getType() == 1) {
 					%>
 					<table border="0" width="100%" id="table-5">
@@ -168,11 +168,11 @@
 						</tr>
 						<tr>
 							<td class="bold">State</td>
-							<td><%=event.getState()%></td>
+							<td><%=event.getState().getStateName()%></td>
 						</tr>
 						<tr>
 							<td class="bold">City</td>
-							<td><%=event.getCity()%></td>
+							<td><%=event.getCity().getCityName()%></td>
 						</tr>
 						<tr>
 							<td class="bold">Pincode</td>
@@ -222,23 +222,16 @@
 <script type="text/javascript">
 	function changeEventStatus(id, status) {
 		var cnfm = false;
-		if (status == -1) {
+		if (status == 2) {
 			cnfm = confirm("You are going to reject this event id " + id
 					+ ", are you sure ?");
 		} else if (status == 1) {
 			cnfm = confirm("You are going to approve this event id " + id
 					+ ", are you sure ?");
-		} else if (status == 2) {
-			cnfm = confirm("You are going to open this event id " + id
-					+ ", are you sure ?");
-		} else if (status == 3) {
-			cnfm = confirm("You are going to close this event id " + id
-					+ ", are you sure ?");
-		}
+		} 
 		if (cnfm) {
 			$.ajax({
-				url : "eventnotifier/EventController?action=change-status&id="
-						+ id + "&status=" + status,
+				url : "/eventnotifier/EventController?action=change-status&id="+ id + "&status=" + status,
 				success : function(result) {
 					alert(result);
 					$("#status").html(result);

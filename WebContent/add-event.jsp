@@ -18,15 +18,15 @@
 				endDate : "required",
 				address : "required",
 				landmark : "required",
-				city : "required",
+				cityId : "required",
 				pincode : {
 					required : true,
 					digits : true,
 					minlength : 6,
 					maxlength : 6
 				},
-				state : "required",
-				category : "required",
+				stateId : "required",
+				categoryId : "required",
 				organizedBy : "required",
 				contactPerson : "required",
 				phoneNo : {
@@ -180,7 +180,7 @@
 							</tr>
 							<tr>
 								<td class="bold" width="10%">City</td>
-								<td><input name="city" /></td>
+								<td><input name="cityId" /></td>
 							</tr>
 							<tr>
 								<td class="bold" width="10%">Pincode</td>
@@ -188,11 +188,11 @@
 							</tr>
 							<tr>
 								<td class="bold" width="10%">State</td>
-								<td><select name="state" id="state">
+								<td><select name="stateId" id="stateId">
 										<option value="">select</option>
 										<%
 											for (State state : stateList) {
-										%><option value="<%=state.getStateName()%>"><%=state.getStateName()%></option>
+										%><option value="<%=state.getStateId()%>"><%=state.getStateName()%></option>
 										<%
 											}
 										%>
@@ -200,11 +200,11 @@
 							</tr>
 							<tr>
 								<td class="bold">Category</td>
-								<td><select name="category" id="category">
+								<td><select name="categoryId" id="categoryId">
 										<option value="">select</option>
 										<%
 											for (Category category : categoryList) {
-										%><option value="<%=category.getCategoryName()%>"><%=category.getCategoryName()%></option>
+										%><option value="<%=category.getCategoryId()%>"><%=category.getCategoryName()%></option>
 										<%
 											}
 										%>

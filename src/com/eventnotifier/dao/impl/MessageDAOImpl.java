@@ -55,7 +55,6 @@ public class MessageDAOImpl extends BaseDAOImpl<Message, Long> implements
 
 	@Override
 	public void sendEventStatusMessage(Event event, String messageTo) {
-		// TODO Auto-generated method stub
 		
 	}
 }

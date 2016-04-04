@@ -103,7 +103,7 @@
 								title="Click here to view event detail"><%=event.getEventName()%></a></td>
 							<td align="center"><%=DateUtil.getOnlyDate(event.getStartDate())%></td>
 							<td align="center"><%=DateUtil.getOnlyDate(event.getEndDate())%></td>
-							<td align="center"><%=event.getCategory()%></td>
+							<td align="center"><%=event.getCategory().getCategoryName() %></td>
 							<td align="center">
 								<%
 									if (event.getStatus() == 1) {

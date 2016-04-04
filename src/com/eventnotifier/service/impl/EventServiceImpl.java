@@ -16,7 +16,12 @@ import com.eventnotifier.dao.impl.MessageDAOImpl;
 import com.eventnotifier.model.Event;
 import com.eventnotifier.model.Message;
 import com.eventnotifier.model.User;
+import com.eventnotifier.service.CategoryService;
+import com.eventnotifier.service.CityService;
 import com.eventnotifier.service.EventService;
+import com.eventnotifier.service.MessageService;
+import com.eventnotifier.service.StateService;
+import com.eventnotifier.service.UserService;
 import com.eventnotifier.util.DateUtil;
 import com.eventnotifier.util.MessageUtil;
 
@@ -26,6 +31,11 @@ public class EventServiceImpl implements EventService {
 			.getLogger(EventServiceImpl.class);
 
 	private MessageDAO messageDAO = null;
+	private StateService stateService = null;
+	private CityService cityService = null;
+	private CategoryService categoryService = null;
+	private UserService userService = null;
+	private MessageService messageService = null;
 
 	@Override
 	public void addEvent(HttpServletRequest request,
@@ -46,10 +56,10 @@ public class EventServiceImpl implements EventService {
 		String endTime = endHour + ":" + endMinute + " " + endAMPM;
 		String address = request.getParameter("address");
 		String landmark = request.getParameter("landmark");
-		String city = request.getParameter("city");
+		String cityId = request.getParameter("cityId");
 		String pincode = request.getParameter("pincode");
-		String state = request.getParameter("state");
-		String category = request.getParameter("category");
+		String stateId = request.getParameter("stateId");
+		String categoryId = request.getParameter("categoryId");
 		String isChargeable = request.getParameter("isChargeable");
 		String fee = request.getParameter("fee");
 		String organizedBy = request.getParameter("organizedBy");
@@ -70,10 +80,15 @@ public class EventServiceImpl implements EventService {
 		event.setEndTime(endTime);
 		event.setAddress(address);
 		event.setLandmark(landmark);
-		event.setCity(city);
+		this.cityService = new CityServiceImpl();
+		event.setCity(this.cityService.getCity(Integer.parseInt(cityId)));
 		event.setPincode(pincode);
-		event.setState(state);
-		event.setCategory(category);
+		this.stateService = new StateServiceImpl();
+		event.setState(this.stateService.getState(Integer.parseInt(stateId)));
+		this.categoryService = new CategoryServiceImpl();
+
+		event.setCategory(this.categoryService.getCategory(Integer
+				.parseInt(categoryId)));
 		event.setIsChargeable(isChargeable);
 		event.setFee(fee);
 		event.setOrganizedBy(organizedBy);
@@ -85,7 +100,7 @@ public class EventServiceImpl implements EventService {
 		event.setEmailId(emailId);
 		event.setTermsConditions(termsConditions);
 		User user = (User) request.getSession().getAttribute("user");
-		event.setCreatedBy(user.getUsername());
+		event.setUser(user);
 		event.setCreatedOn(new Date());
 		event.setIpAddress(request.getRemoteAddr());
 		event.setStatus(0);
@@ -103,7 +118,8 @@ public class EventServiceImpl implements EventService {
 		message.setMessageFrom(MessageUtil.SYSTEM_EMAIL);
 		message.setMessageOn(new Date());
 		message.setSubject(MessageUtil.NEW_EVENT_ADDED);
-		message.setContent(new MessageUtil().getEventMsgContent(request, event, 0));
+		message.setContent(new MessageUtil().getEventMsgContent(request, event,
+				0));
 		return message;
 	}
 
@@ -153,6 +169,12 @@ public class EventServiceImpl implements EventService {
 		String status = request.getParameter("status");
 		EventDAO eventDAO = new EventDAOImpl();
 		Event event = eventDAO.getEvent(id);
+
+		int userId = event.getUser().getId();
+		this.userService = new UserServiceImpl();
+		User usr = this.userService.getUserById(userId);
+		int categoryId = event.getCategory().getCategoryId();
+		this.messageService = new MessageServiceImpl();
 		if (status.equals("1")) {
 			event.setStatus(1);
 			event.setVerifyBy(user.getUsername());
@@ -161,7 +183,9 @@ public class EventServiceImpl implements EventService {
 			event.setApprovedOn(new Date());
 			eventDAO.update(event);
 			changeStatus = true;
-			
+			request.getServletContext().setAttribute("upcomingEventList",
+					new EventServiceImpl().getUpcomingEventList());
+			this.messageService.sendEventStatusMessage(request, event, usr);
 		} else if (status.equals("2")) {
 			event.setStatus(2);
 			event.setVerifyBy(user.getUsername());
@@ -170,6 +194,7 @@ public class EventServiceImpl implements EventService {
 			event.setRejectedOn(new Date());
 			eventDAO.update(event);
 			changeStatus = true;
+			this.messageService.sendEventStatusMessage(request, event, usr);
 		}
 
 		return changeStatus;

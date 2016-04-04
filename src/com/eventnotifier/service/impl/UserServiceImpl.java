@@ -139,4 +139,10 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
+	@Override
+	public User getUserById(int id) {
+		this.userDAO = new UserDAOImpl();
+		return this.userDAO.getUser(id);
+	}
+
 }

@@ -9,9 +9,11 @@ import javax.servlet.http.HttpSession;
 
 import com.eventnotifier.dao.MessageDAO;
 import com.eventnotifier.dao.impl.MessageDAOImpl;
+import com.eventnotifier.model.Event;
 import com.eventnotifier.model.Message;
 import com.eventnotifier.model.User;
 import com.eventnotifier.service.MessageService;
+import com.eventnotifier.util.MessageUtil;
 
 public class MessageServiceImpl implements MessageService {
 
@@ -36,11 +38,8 @@ public class MessageServiceImpl implements MessageService {
 		this.messageDAO = new MessageDAOImpl();
 		Message message = this.messageDAO.getMessage(id);
 		User user = (User) request.getSession().getAttribute("user");
-		System.out.println("message.getReadStatus() " + message.getReadStatus() );
-		System.out.println("message.getMessageTo()" + message.getMessageTo());
-		System.out.println("user.getEmail()" + user.getEmail());
-		if(message.getReadStatus() == 0 && message.getMessageTo().equals(user.getEmail())) {
-			System.out.println("inside if condition");
+		if (message.getReadStatus() == 0
+				&& message.getMessageTo().equals(user.getEmail())) {
 			message.setReadStatus(1);
 			this.messageDAO.update(message);
 		}
@@ -92,5 +91,36 @@ public class MessageServiceImpl implements MessageService {
 		Message message = this.messageDAO.getMessage(messageId);
 		message.setFromDeleteStatus(-1);
 		this.messageDAO.update(message);
+	}
+
+	@Override
+	public void sendEventStatusMessage(HttpServletRequest request, Event event,
+			User user) {
+		Message message = new Message();
+		message.setMessageFrom(MessageUtil.ADMIN_EMAIL);
+		message.setMessageTo(user.getEmail());
+		message.setMessageOn(new Date());
+		StringBuilder sb = new StringBuilder("");
+		sb.append("Hi ").append(user.getUsername());
+		sb.append(MessageUtil.TWO_BR);
+		sb.append(MessageUtil.GREETING);
+		if (event.getStatus() == 1) {
+			message.setSubject(MessageUtil.EVENT_APPROVED_MSG);
+			sb.append(MessageUtil.EVENT_APPROVED_MSG).append(" ");
+		} else {
+			message.setSubject(MessageUtil.EVENT_REJECTED_MSG);
+			sb.append(MessageUtil.UPDATE_EVENT_CONTENT);
+			sb.append(MessageUtil.TWO_BR);
+			sb.append(MessageUtil.EVENT_REJECTED_MSG).append(" ");
+		}
+		sb.append("<a title=\"Click here to view event details\" href=\""
+				+ request.getContextPath() + "/EventController?action=view&id="
+				+ event.getId() + "\">view event details</a>");
+		sb.append(MessageUtil.TWO_BR);
+		sb.append(MessageUtil.FOR_QUERIES_MSG).append(MessageUtil.THANKS)
+				.append(MessageUtil.EVENT_NOTIFIER_TEAM);
+		message.setContent(sb.toString());
+		this.messageDAO = new MessageDAOImpl();
+		this.messageDAO.save(message);
 	}
 }

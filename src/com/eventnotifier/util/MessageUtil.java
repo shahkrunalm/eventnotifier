@@ -11,8 +11,8 @@ public class MessageUtil {
 	public static final String SYSTEM_EMAIL = "system@eventnotifier.com";
 	public static final String WELCOME_MSG = "Welcome to Curated Event Notifier";
 	public static final String GREETING = "Greetings from Curated Event Notifier.<br><br>";
-	public static final String EVENT_APPROVED_MSG = "Your event is approved.<br><br>";
-	public static final String EVENT_REJECTED_MSG = "Your event is rejected.<br><br>";
+	public static final String EVENT_APPROVED_MSG = "Your event is approved.";
+	public static final String EVENT_REJECTED_MSG = "Your event is rejected.";
 	public static final String REGISTER_MSG = "Thank you for registering yourself with us. Happy eventing.<br><br>";
 	public static final String FOR_QUERIES_MSG = "For any queries, mail us at info@eventnotifier.com<br><br>";
 	public static final String THANKS = "Thanks,<br>";
@@ -20,6 +20,7 @@ public class MessageUtil {
 	public static final String NEW_EVENT_ADDED = "New event is added";
 	public static final String NEW_EVENT_CONTENT = "Please verify event details and approve/reject it.<br><br>";
 	public static final String TWO_BR = "<br><br>";
+	public static final String UPDATE_EVENT_CONTENT = "We request you to provide more details. Do not hesitate to contact us for more details";
 	public static final String WELCOME_MSG_CONTENT = "In the past 4 months we have stretched our arms to all states of India. We have been assisting more than 100 event seekers every month and now we are one of the largest event discovery portal.";
 
 	public String getEventMsgContent(HttpServletRequest request, Event event,
