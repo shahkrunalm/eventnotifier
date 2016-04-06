@@ -77,7 +77,7 @@
 				<div id="inner_content">
 					<div class="box">
 						City: <a href="add-city.jsp" title="click here to add city">add</a>
-						| <a href="view-city-list" title="click here to view city list">view</a>
+						| <a href='<%=request.getContextPath() + "/CategoryController?action=view-list&status=-1" %>' title="click here to view category list">view</a>
 					</div>
 				</div>
 				<!-- 

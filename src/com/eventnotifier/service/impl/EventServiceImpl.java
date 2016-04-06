@@ -186,6 +186,11 @@ public class EventServiceImpl implements EventService {
 			request.getServletContext().setAttribute("upcomingEventList",
 					new EventServiceImpl().getUpcomingEventList());
 			this.messageService.sendEventStatusMessage(request, event, usr);
+			List<User> userList = this.userService
+					.getUserListByCategoryId(categoryId);
+			for (User u : userList) {
+				this.messageService.sendEventNotification(request, event, u);
+			}
 		} else if (status.equals("2")) {
 			event.setStatus(2);
 			event.setVerifyBy(user.getUsername());

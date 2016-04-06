@@ -53,6 +53,15 @@ public class UserDAOImpl extends BaseDAOImpl<User, Long> implements UserDAO {
 		return (User) session.get(User.class, id);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> getUserListByCategoryId(int id) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		return session.createCriteria(User.class)
+				.add(Restrictions.eq("category.categoryId", id)).list();
+	}
+
 	/*
 	 * @Override public void save(User user) { Session session =
 	 * HibernateUtil.getSessionFactory().getCurrentSession(); Transaction tx =

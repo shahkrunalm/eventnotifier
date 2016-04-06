@@ -145,4 +145,10 @@ public class UserServiceImpl implements UserService {
 		return this.userDAO.getUser(id);
 	}
 
+	@Override
+	public List<User> getUserListByCategoryId(int id) {
+		this.userDAO = new UserDAOImpl();
+		return this.userDAO.getUserListByCategoryId(id);
+	}
+
 }

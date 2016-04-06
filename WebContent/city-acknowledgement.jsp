@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Category Acknowledgement - Curated Event Notifier</title>
+<title>City Acknowledgement - Curated Event Notifier</title>
 <%@ include file="header.jsp"%>
 </head>
 <body>
@@ -15,21 +15,21 @@
 				<div class="box">
 					<table id="table-page-heading" border="0">
 						<tr>
-							<td><h4>Category Acknowledgement</h4></td>
+							<td><h4>City Acknowledgement</h4></td>
 						</tr>
 					</table>
 					<table width="100%">
 						<tr>
-							<td>Category added successfully.</td>
+							<td>City added successfully.</td>
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
 						</tr>
 
 						<tr>
-							<td>Category: <a href="add-category.jsp"
-								title="click here to add category">add</a> | <a
-								href='<%=request.getContextPath() + "/CategoryController?action=view-list&status=-1" %>' title="click here to view category list">view</a>
+							<td>City: <a href="add-city.jsp"
+								title="click here to add city">add</a> | <a
+								href='<%=request.getContextPath() + "/CityController?action=view-list&status=-1" %>' title="click here to view city list">view</a>
 							</td>
 						</tr>
 						<tr>

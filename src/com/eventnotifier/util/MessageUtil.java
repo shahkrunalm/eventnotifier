@@ -22,6 +22,7 @@ public class MessageUtil {
 	public static final String TWO_BR = "<br><br>";
 	public static final String UPDATE_EVENT_CONTENT = "We request you to provide more details. Do not hesitate to contact us for more details";
 	public static final String WELCOME_MSG_CONTENT = "In the past 4 months we have stretched our arms to all states of India. We have been assisting more than 100 event seekers every month and now we are one of the largest event discovery portal.";
+	public static final String EVENT_MSG_CATEGORY = "Based on your category subscription, we found new event for you. ";
 
 	public String getEventMsgContent(HttpServletRequest request, Event event,
 			int status) {

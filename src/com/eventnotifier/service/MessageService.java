@@ -25,4 +25,8 @@ public interface MessageService {
 
 	void sendEventStatusMessage(HttpServletRequest request, Event event,
 			User user);
+
+	void sendEventNotification(HttpServletRequest request, Event event,
+			User user);
+
 }

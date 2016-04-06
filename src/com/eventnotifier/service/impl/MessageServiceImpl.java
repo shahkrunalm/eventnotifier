@@ -123,4 +123,28 @@ public class MessageServiceImpl implements MessageService {
 		this.messageDAO = new MessageDAOImpl();
 		this.messageDAO.save(message);
 	}
+	
+	@Override
+	public void sendEventNotification(HttpServletRequest request, Event event,
+			User user) {
+		Message message = new Message();
+		message.setMessageFrom(MessageUtil.ADMIN_EMAIL);
+		message.setMessageTo(user.getEmail());
+		message.setMessageOn(new Date());
+		message.setSubject(MessageUtil.NEW_EVENT_ADDED);
+		StringBuilder sb = new StringBuilder("");
+		sb.append("Hi ").append(user.getUsername());
+		sb.append(MessageUtil.TWO_BR);
+		sb.append(MessageUtil.GREETING);
+		sb.append(MessageUtil.EVENT_MSG_CATEGORY);
+		sb.append("<a title=\"Click here to view event details\" href=\""
+				+ request.getContextPath() + "/EventController?action=view&id="
+				+ event.getId() + "\">view event details</a>");
+		sb.append(MessageUtil.TWO_BR);
+		sb.append(MessageUtil.FOR_QUERIES_MSG).append(MessageUtil.THANKS)
+				.append(MessageUtil.EVENT_NOTIFIER_TEAM);
+		message.setContent(sb.toString());
+		this.messageDAO = new MessageDAOImpl();
+		this.messageDAO.save(message);
+	}
 }

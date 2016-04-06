@@ -11,28 +11,31 @@ import com.eventnotifier.dao.CityDAO;
 import com.eventnotifier.dao.impl.CityDAOImpl;
 import com.eventnotifier.model.City;
 import com.eventnotifier.service.CityService;
+import com.eventnotifier.service.StateService;
 
 public class CityServiceImpl implements CityService {
 
 	private CityDAO cityDAO = null;
-	
+	private StateService stateService = null;
 	private static final Logger LOGGER = Logger
 			.getLogger(CityServiceImpl.class);
 
 	@Override
-	public void addCity(HttpServletRequest request,
-			HttpServletResponse response) {
+	public void addCity(HttpServletRequest request, HttpServletResponse response) {
 		String cityName = request.getParameter("cityName");
+		String stateId = request.getParameter("stateId");
 		City city = new City();
 		city.setCityName(cityName);
+		this.stateService = new StateServiceImpl();
+		city.setState(this.stateService.getState(Integer.parseInt(stateId)));
 		city.setStatus(1);
 		this.cityDAO = new CityDAOImpl();
 		this.cityDAO.save(city);
 		LOGGER.info("City added successfully");
-		loadActiveCitys(request, this.cityDAO);
+		loadActiveCities(request, this.cityDAO);
 	}
 
-	private void loadActiveCitys(HttpServletRequest request, CityDAO cityDAO) {
+	private void loadActiveCities(HttpServletRequest request, CityDAO cityDAO) {
 		request.getServletContext().setAttribute("loadedCityList",
 				this.cityDAO.getListByCriteria(new City(), "cityName", 1));
 	}
@@ -42,8 +45,7 @@ public class CityServiceImpl implements CityService {
 			HttpServletResponse response) {
 		int status = Integer.parseInt(request.getParameter("status"));
 		this.cityDAO = new CityDAOImpl();
-		return this.cityDAO
-				.getListByCriteria(new City(), "cityName", status);
+		return this.cityDAO.getListByCriteria(new City(), "cityName", status);
 	}
 
 	@Override
