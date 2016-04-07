@@ -28,7 +28,10 @@ public class User {
 	private String gender;
 	private Date birthDate;
 	private String address;
-	private String city;
+
+	@ManyToOne
+	@JoinColumn(name = "cityId")
+	private City city;
 	private String pincode;
 	@ManyToOne
 	@JoinColumn(name = "stateId")
@@ -159,14 +162,6 @@ public class User {
 		this.address = address;
 	}
 
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
 	public String getPincode() {
 		return pincode;
 	}
@@ -213,6 +208,14 @@ public class User {
 
 	public void setEvents(Set<Event> events) {
 		this.events = events;
+	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
 	}
 
 }

@@ -24,4 +24,5 @@ public class Constants {
 	public static final String SENT = "sent";
 	public static final String DELETE_TO = "delete_to";
 	public static final String DELETE_FROM = "delete_from";
+	public static final String GET_CITIES = "get_cities";
 }

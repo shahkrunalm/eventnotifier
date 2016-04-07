@@ -16,6 +16,7 @@ import com.eventnotifier.dao.impl.UserDAOImpl;
 import com.eventnotifier.model.Message;
 import com.eventnotifier.model.User;
 import com.eventnotifier.service.CategoryService;
+import com.eventnotifier.service.CityService;
 import com.eventnotifier.service.StateService;
 import com.eventnotifier.service.UserService;
 import com.eventnotifier.util.DateUtil;
@@ -26,6 +27,7 @@ public class UserServiceImpl implements UserService {
 	private UserDAO userDAO = null;
 	private CategoryService categoryService = null;
 	private StateService stateService = null;
+	private CityService cityService = null;
 	private MessageDAO messageDAO = null;
 	private static final Logger LOGGER = Logger
 			.getLogger(UserServiceImpl.class);
@@ -40,7 +42,7 @@ public class UserServiceImpl implements UserService {
 		String gender = request.getParameter("gender");
 		String mobile = request.getParameter("mobile");
 		String address = request.getParameter("address");
-		String city = request.getParameter("city");
+		String cityId = request.getParameter("cityId");
 		String stateId = request.getParameter("stateId");
 		String pincode = request.getParameter("pincode");
 		String occupation = request.getParameter("occupation");
@@ -59,7 +61,9 @@ public class UserServiceImpl implements UserService {
 		user.setMobile(mobile);
 		user.setEmail(email);
 		user.setAddress(address);
-		user.setCity(city);
+
+		this.cityService = new CityServiceImpl();
+		user.setCity(this.cityService.getCity(Integer.parseInt(cityId)));
 		this.stateService = new StateServiceImpl();
 		user.setState(this.stateService.getState(Integer.parseInt(stateId)));
 		user.setPincode(pincode);

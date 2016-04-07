@@ -65,7 +65,7 @@
 							<td class="bold">Education</td>
 							<td><%=userProfile.getEducation()%></td>
 						</tr>
-						
+
 						<tr>
 							<td class="bold">Occupation</td>
 							<td><%=userProfile.getOccupation()%></td>
@@ -76,7 +76,7 @@
 						</tr>
 						<tr>
 							<td class="bold">City</td>
-							<td><%=userProfile.getCity()%></td>
+							<td><%=userProfile.getCity().getCityName()%></td>
 						</tr>
 
 						<tr>
@@ -93,7 +93,15 @@
 						</tr>
 						<tr>
 							<td class="bold">Last Login</td>
-							<td><%=DateUtil.getFormattedDate(userProfile.getLastLogin())%></td>
+							<td>
+								<%
+									if (userProfile.getLastLogin() != null) {
+										out.print(DateUtil.getFormattedDate(userProfile.getLastLogin()));
+									}else{
+										out.print("N.A.");
+									}
+								%>
+							</td>
 						</tr>
 						<tr>
 							<td class="bold">Member since</td>

@@ -8,75 +8,118 @@
 <%@ include file="header.jsp"%>
 <%@ include file="menu.jsp"%>
 <script type="text/javascript">
-	$().ready(function() {
-		$("#add-event-form").validate({
-			errorClass : "my-error-class",
-			rules : {
-				eventName : "required",
-				description : "required",
-				startDate : "required",
-				endDate : "required",
-				address : "required",
-				landmark : "required",
-				cityId : "required",
-				pincode : {
-					required : true,
-					digits : true,
-					minlength : 6,
-					maxlength : 6
-				},
-				stateId : "required",
-				categoryId : "required",
-				organizedBy : "required",
-				contactPerson : "required",
-				phoneNo : {
-					required : false,
-					digits : true
-				},
-				faxNo : {
-					required : false,
-					digits : true
-				},
-				mobileNo : {
-					required : true,
-					digits : true,
-					minlength : 10,
-					maxlength : 10
-				},
-				website : {
-					required : false,
-					url : true
-				},
-				emailId : {
-					required : false,
-					email : true
-				},
-				fee : {
-					required : "#isChargeable:checked"
-				}
-			}
-		});
+	$()
+			.ready(
+					function() {
+						$("#add-event-form").validate({
+							errorClass : "my-error-class",
+							rules : {
+								eventName : "required",
+								description : "required",
+								startDate : "required",
+								endDate : "required",
+								address : "required",
+								landmark : "required",
+								cityId : "required",
+								pincode : {
+									required : true,
+									digits : true,
+									minlength : 6,
+									maxlength : 6
+								},
+								stateId : "required",
+								categoryId : "required",
+								organizedBy : "required",
+								contactPerson : "required",
+								phoneNo : {
+									required : false,
+									digits : true
+								},
+								faxNo : {
+									required : false,
+									digits : true
+								},
+								mobileNo : {
+									required : true,
+									digits : true,
+									minlength : 10,
+									maxlength : 10
+								},
+								website : {
+									required : false,
+									url : true
+								},
+								emailId : {
+									required : false,
+									email : true
+								},
+								fee : {
+									required : "#isChargeable:checked"
+								}
+							}
+						});
 
-		$(function() {
-			$("#startDate").datepicker({
-				changeMonth : true,
-				changeYear : true,
-				dateFormat : "dd-mm-yy",
-				minDate : "0m +0w",
-				maxDate : "18m +0w"
-			});
-		});
+						$("#stateId")
+								.change(
+										function() {
+											stateId = $("#stateId").val();
+											if (!isNaN(stateId)
+													&& stateId != "") {
+												$
+														.ajax({
+															url : "/eventnotifier/CityController?action=get_cities&stateId="
+																	+ stateId,
+															success : function(
+																	result) {
+																var x = document
+																		.getElementById("cityId");
+																x.length = 0;
+																var str = result
+																		.split(",");
+																var len = str.length - 1;
+																for (var i = 0; i < len; i++) {
+																	var option = document
+																			.createElement("option");
+																	var str1 = str[i]
+																			.split(":");
+																	option.value = str1[0];
+																	option.text = str1[1];
+																	try {
+																		x
+																				.add(
+																						option,
+																						x.options[null]);
+																	} catch (e) {
+																		x
+																				.add(
+																						option,
+																						null);
+																	}
+																}
+															}
+														});
+											}
+										});
+						$(function() {
+							$("#startDate").datepicker({
+								changeMonth : true,
+								changeYear : true,
+								dateFormat : "dd-mm-yy",
+								minDate : "0m +0w",
+								maxDate : "18m +0w"
+							});
+						});
 
-		$(function() {
-			$("#endDate").datepicker({
-				changeMonth : true,
-				changeYear : true,
-				dateFormat : "dd-mm-yy",
-				minDate : "0m +0w",
-				maxDate : "18m +0w"
-			});
-		});
-	});
+						$(function() {
+							$("#endDate").datepicker({
+								changeMonth : true,
+								changeYear : true,
+								dateFormat : "dd-mm-yy",
+								minDate : "0m +0w",
+								maxDate : "18m +0w"
+							});
+						});
+					});
 </script>
 </head>
 <%
@@ -178,14 +221,7 @@
 								<td class="bold" width="10%">Landmark</td>
 								<td><input name="landmark" /></td>
 							</tr>
-							<tr>
-								<td class="bold" width="10%">City</td>
-								<td><input name="cityId" /></td>
-							</tr>
-							<tr>
-								<td class="bold" width="10%">Pincode</td>
-								<td><input name="pincode" /></td>
-							</tr>
+
 							<tr>
 								<td class="bold" width="10%">State</td>
 								<td><select name="stateId" id="stateId">
@@ -197,6 +233,16 @@
 											}
 										%>
 								</select></td>
+							</tr>
+							<tr>
+								<td class="bold">City</td>
+								<td><select id="cityId" name="cityId">
+										<option>select</option>
+								</select></td>
+							</tr>
+							<tr>
+								<td class="bold" width="10%">Pincode</td>
+								<td><input name="pincode" /></td>
 							</tr>
 							<tr>
 								<td class="bold">Category</td>

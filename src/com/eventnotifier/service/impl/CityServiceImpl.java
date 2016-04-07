@@ -68,4 +68,12 @@ public class CityServiceImpl implements CityService {
 		return this.cityDAO.getCity(id);
 	}
 
+	@Override
+	public List<City> getCities(HttpServletRequest request,
+			HttpServletResponse response) {
+		this.cityDAO = new CityDAOImpl();
+		int stateId = Integer.parseInt(request.getParameter("stateId"));
+		return this.cityDAO.getCities(stateId);
+	}
+
 }

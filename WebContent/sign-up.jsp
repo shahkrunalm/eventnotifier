@@ -19,58 +19,102 @@
 	.getAttribute("loadedStateList");
 %>
 <script type="text/javascript">
-	$().ready(function() {
-		$("#signup-form").validate({
-			errorClass : "my-error-class",
-			rules : {
-				firstname : "required",
-				lastname : "required",
-				birthDate : "required",
-				address : "required",
-				city : "required",
-				stateId : "required",
-				categoryId : "required",
-				username : {
-					required : true,
-					minlength : 6
-				},
-				password : {
-					required : true,
-					minlength : 6
-				},
-				reEnterPassword : {
-					required : true,
-					equalTo : "#password"
-				},
-				mobile : {
-					required : true,
-					digits : true,
-					minlength : 10,
-					maxlength : 10
-				},
-				email : {
-					required : true,
-					email : true
-				},
-				pincode : {
-					required : true,
-					digits : true,
-					minlength : 6,
-					maxlength : 6
-				}
-			}
-		});
+	$()
+			.ready(
+					function() {
+						$("#signup-form").validate({
+							errorClass : "my-error-class",
+							rules : {
+								firstname : "required",
+								lastname : "required",
+								birthDate : "required",
+								address : "required",
+								cityId : "required",
+								stateId : "required",
+								categoryId : "required",
+								username : {
+									required : true,
+									minlength : 6
+								},
+								password : {
+									required : true,
+									minlength : 6
+								},
+								reEnterPassword : {
+									required : true,
+									equalTo : "#password"
+								},
+								mobile : {
+									required : true,
+									digits : true,
+									minlength : 10,
+									maxlength : 10
+								},
+								email : {
+									required : true,
+									email : true
+								},
+								pincode : {
+									required : true,
+									digits : true,
+									minlength : 6,
+									maxlength : 6
+								}
+							}
+						});
 
-		$(function() {
-			$("#birthDate").datepicker({
-				changeMonth : true,
-				changeYear : true,
-				dateFormat : "dd-mm-yy",
-				minDate : "-780m +0w",
-				maxDate : "-144m +0w"
-			});
-		});
-	});
+						$("#stateId")
+								.change(
+										function() {
+											stateId = $("#stateId").val();
+											if (!isNaN(stateId)
+													&& stateId != "") {
+												$
+														.ajax({
+															url : "/eventnotifier/CityController?action=get_cities&stateId="
+																	+ stateId,
+															success : function(
+																	result) {
+																var x = document
+																		.getElementById("cityId");
+																x.length = 0;
+																var str = result
+																		.split(",");
+																var len = str.length - 1;
+																for (var i = 0; i < len; i++) {
+																	var option = document
+																			.createElement("option");
+																	var str1 = str[i]
+																			.split(":");
+																	option.value = str1[0];
+																	option.text = str1[1];
+																	try {
+																		x
+																				.add(
+																						option,
+																						x.options[null]);
+																	} catch (e) {
+																		x
+																				.add(
+																						option,
+																						null);
+																	}
+																}
+															}
+														});
+											}
+										});
+
+						$(function() {
+							$("#birthDate").datepicker({
+								changeMonth : true,
+								changeYear : true,
+								dateFormat : "dd-mm-yy",
+								minDate : "-780m +0w",
+								maxDate : "-144m +0w"
+							});
+						});
+					});
 </script>
 <body>
 	<%@ include file="menu.jsp"%>
@@ -158,15 +202,6 @@
 								<td class="bold">Address</td>
 								<td><input type="text" name="address"><br></td>
 							</tr>
-							<tr>
-								<td class="bold">City</td>
-								<td><input type="text" name="city"><br></td>
-							</tr>
-
-							<tr>
-								<td class="bold">Pincode</td>
-								<td><input type="text" name="pincode"><br></td>
-							</tr>
 
 							<tr>
 								<td class="bold">State</td>
@@ -180,6 +215,18 @@
 										%>
 								</select><br></td>
 							</tr>
+							<tr>
+								<td class="bold">City</td>
+								<td><select id="cityId" name="cityId">
+										<option>select</option>
+								</select></td>
+							</tr>
+
+							<tr>
+								<td class="bold">Pincode</td>
+								<td><input type="text" name="pincode"><br></td>
+							</tr>
+
 							<tr>
 								<td class="bold">Mobile no</td>
 								<td><input type="text" name="mobile"></td>

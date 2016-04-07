@@ -18,5 +18,8 @@ public interface CityService {
 
 	City updateCity(HttpServletRequest request, HttpServletResponse response);
 
+	List<City> getCities(HttpServletRequest request,
+			HttpServletResponse response);
+
 	void deleteCity(HttpServletRequest request, HttpServletResponse response);
 }

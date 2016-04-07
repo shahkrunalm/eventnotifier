@@ -1,6 +1,7 @@
 package com.eventnotifier.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -55,6 +56,14 @@ public class CityController extends HttpServlet {
 					response);
 		} else if (action.equals(Constants.UPDATE)) {
 		} else if (action.equals(Constants.DELETE)) {
+		} else if (action.equals(Constants.GET_CITIES)) {
+			List<City> cityList = this.cityService.getCities(request, response);
+			StringBuffer sb = new StringBuffer();
+			for (City city : cityList) {
+				sb.append(city.getCityId() + ":" +city.getCityName()).append(",");
+			}
+			PrintWriter out = response.getWriter();
+			out.print(sb);
 		}
 	}
 

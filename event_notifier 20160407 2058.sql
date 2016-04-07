@@ -62,7 +62,7 @@ CREATE TABLE `city` (
   PRIMARY KEY  (`cityId`),
   KEY `FK2E996BF066D5FD` (`stateId`),
   CONSTRAINT `FK2E996BF066D5FD` FOREIGN KEY (`stateId`) REFERENCES `state` (`stateId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `city`
@@ -70,7 +70,9 @@ CREATE TABLE `city` (
 
 /*!40000 ALTER TABLE `city` DISABLE KEYS */;
 INSERT INTO `city` (`cityId`,`cityName`,`status`,`stateId`) VALUES 
- (1,'Ahmedabad',1,1);
+ (1,'Ahmedabad',1,1),
+ (2,'Baroda',1,1),
+ (3,'Surat',1,1);
 /*!40000 ALTER TABLE `city` ENABLE KEYS */;
 
 
@@ -123,7 +125,7 @@ CREATE TABLE `event` (
   CONSTRAINT `FK5C6729A9A6D3D0A` FOREIGN KEY (`createdBy`) REFERENCES `user` (`id`),
   CONSTRAINT `FK5C6729ADDE61F97` FOREIGN KEY (`categoryId`) REFERENCES `category` (`categoryId`),
   CONSTRAINT `FK5C6729AF066D5FD` FOREIGN KEY (`stateId`) REFERENCES `state` (`stateId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `event`
@@ -131,7 +133,8 @@ CREATE TABLE `event` (
 
 /*!40000 ALTER TABLE `event` DISABLE KEYS */;
 INSERT INTO `event` (`id`,`address`,`approvedBy`,`approvedOn`,`contactPerson`,`createdOn`,`description`,`emailId`,`endDate`,`endTime`,`eventName`,`faxNo`,`fee`,`filePath`,`ipAddress`,`isChargeable`,`landmark`,`mobileNo`,`organizedBy`,`phoneNo`,`pincode`,`rejectedBy`,`rejectedOn`,`startDate`,`startTime`,`status`,`termsConditions`,`verifyBy`,`verifyOn`,`website`,`categoryId`,`cityId`,`stateId`,`createdBy`) VALUES 
- (1,'q','krunal','2016-04-05 00:03:36','1','2016-04-04 21:58:08','q','t@gmail.com','2016-04-25 00:00:00','01:00 AM','q','9376197557','1',NULL,'0:0:0:0:0:0:0:1','on','q','9376197557','1','9376197557','380005','krunal','2016-04-05 00:02:55','2016-04-05 00:00:00','01:00 AM',1,'terms','krunal','2016-04-05 00:03:36','http://www.google.com',2,1,1,1);
+ (1,'q','krunal','2016-04-06 23:51:42','1','2016-04-04 21:58:08','q','t@gmail.com','2016-04-25 00:00:00','01:00 AM','q','9376197557','1',NULL,'0:0:0:0:0:0:0:1','on','q','9376197557','1','9376197557','380005','krunal','2016-04-05 00:02:55','2016-04-10 00:00:00','01:00 AM',1,'terms','krunal','2016-04-06 23:51:42','http://www.google.com',2,1,1,1),
+ (2,'p',NULL,NULL,'p','2016-04-07 20:57:21','p','p@p.com','2016-04-30 00:00:00','01:00 AM','p','9376197557','100',NULL,'0:0:0:0:0:0:0:1','on','p','9376197557','p','9376197557','380005',NULL,NULL,'2016-04-21 00:00:00','01:00 AM',0,'terms',NULL,NULL,'http://www.google.com',2,2,1,1);
 /*!40000 ALTER TABLE `event` ENABLE KEYS */;
 
 
@@ -152,7 +155,7 @@ CREATE TABLE `message` (
   `toDeleteStatus` int(11) NOT NULL,
   `trashStatus` int(11) NOT NULL,
   PRIMARY KEY  (`messageId`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `message`
@@ -179,7 +182,14 @@ INSERT INTO `message` (`messageId`,`content`,`fromDeleteStatus`,`messageFrom`,`m
  (17,'Hi krunal<br><br>Greetings from Curated Event Notifier.<br><br>We request you to provide more details. Do not hesitate to contact us for more details<br><br>Your event is rejected.<br><br> <a title=\"Click here to view event details\" href=\"/eventnotifier/EventController?action=view&id=1\">view event details</a><br><br>For any queries, mail us at info@eventnotifier.com<br><br>Thanks,<br>Curated Event Notifier Team.',0,'admin@eventnotifier.com','2016-04-04 23:55:04','admin@eventnotifier.com',1,'Your event is rejected.<br><br>',0,0),
  (18,'Hi krunal<br><br>Greetings from Curated Event Notifier.<br><br>Your event is approved. <a title=\"Click here to view event details\" href=\"/eventnotifier/EventController?action=view&id=1\">view event details</a><br><br>For any queries, mail us at info@eventnotifier.com<br><br>Thanks,<br>Curated Event Notifier Team.',0,'admin@eventnotifier.com','2016-04-05 00:02:13','admin@eventnotifier.com',1,'Your event is approved.',0,0),
  (19,'Hi krunal<br><br>Greetings from Curated Event Notifier.<br><br>We request you to provide more details. Do not hesitate to contact us for more details<br><br>Your event is rejected. <a title=\"Click here to view event details\" href=\"/eventnotifier/EventController?action=view&id=1\">view event details</a><br><br>For any queries, mail us at info@eventnotifier.com<br><br>Thanks,<br>Curated Event Notifier Team.',0,'admin@eventnotifier.com','2016-04-05 00:02:55','admin@eventnotifier.com',1,'Your event is rejected.',0,0),
- (20,'Hi krunal<br><br>Greetings from Curated Event Notifier.<br><br>Your event is approved. <a title=\"Click here to view event details\" href=\"/eventnotifier/EventController?action=view&id=1\">view event details</a><br><br>For any queries, mail us at info@eventnotifier.com<br><br>Thanks,<br>Curated Event Notifier Team.',0,'admin@eventnotifier.com','2016-04-05 00:03:36','admin@eventnotifier.com',0,'Your event is approved.',0,0);
+ (20,'Hi krunal<br><br>Greetings from Curated Event Notifier.<br><br>Your event is approved. <a title=\"Click here to view event details\" href=\"/eventnotifier/EventController?action=view&id=1\">view event details</a><br><br>For any queries, mail us at info@eventnotifier.com<br><br>Thanks,<br>Curated Event Notifier Team.',0,'admin@eventnotifier.com','2016-04-05 00:03:36','admin@eventnotifier.com',0,'Your event is approved.',0,0),
+ (21,'Hi krunal<br><br>Greetings from Curated Event Notifier.<br><br>Your event is approved. <a title=\"Click here to view event details\" href=\"/eventnotifier/EventController?action=view&id=1\">view event details</a><br><br>For any queries, mail us at info@eventnotifier.com<br><br>Thanks,<br>Curated Event Notifier Team.',0,'admin@eventnotifier.com','2016-04-06 23:45:49','admin@eventnotifier.com',0,'Your event is approved.',0,0),
+ (22,'Hi krunal<br><br>Greetings from Curated Event Notifier.<br><br>Your event is approved. <a title=\"Click here to view event details\" href=\"/eventnotifier/EventController?action=view&id=1\">view event details</a><br><br>For any queries, mail us at info@eventnotifier.com<br><br>Thanks,<br>Curated Event Notifier Team.',0,'admin@eventnotifier.com','2016-04-06 23:51:42','admin@eventnotifier.com',0,'Your event is approved.',0,0),
+ (23,'Hi jinal<br><br>Greetings from Curated Event Notifier.<br><br>Based on your category subscription, we found new event for you. <a title=\"Click here to view event details\" href=\"/eventnotifier/EventController?action=view&id=1\">view event details</a><br><br>For any queries, mail us at info@eventnotifier.com<br><br>Thanks,<br>Curated Event Notifier Team.',0,'admin@eventnotifier.com','2016-04-06 23:51:42','jinal@shah.com',0,NULL,0,0),
+ (24,'Hi sadhna<br><br>Greetings from Curated Event Notifier.<br><br>Based on your category subscription, we found new event for you. <a title=\"Click here to view event details\" href=\"/eventnotifier/EventController?action=view&id=1\">view event details</a><br><br>For any queries, mail us at info@eventnotifier.com<br><br>Thanks,<br>Curated Event Notifier Team.',0,'admin@eventnotifier.com','2016-04-06 23:51:42','sadhna@gmail.com',0,NULL,0,0),
+ (25,'Hi namitk<br><br>Greetings from Curated Event Notifier.<br><br>Based on your category subscription, we found new event for you. <a title=\"Click here to view event details\" href=\"/eventnotifier/EventController?action=view&id=1\">view event details</a><br><br>For any queries, mail us at info@eventnotifier.com<br><br>Thanks,<br>Curated Event Notifier Team.',0,'admin@eventnotifier.com','2016-04-06 23:51:42','namitk@gmail.com',1,NULL,0,0),
+ (26,'Hi hemang,<br><br>Greetings from Curated Event Notifier.<br><br>In the past 4 months we have stretched our arms to all states of India. We have been assisting more than 100 event seekers every month and now we are one of the largest event discovery portal.<br><br>Never miss an event. Explore events from any where. Happy eventing!!!<br><br>For any queries, mail us at info@eventnotifier.com<br><br>Thanks,<br>Curated Event Notifier Team.',0,'system@eventnotifier.com','2016-04-07 20:36:31','hemang@cybage.com',0,'Welcome to Curated Event Notifier',0,0),
+ (27,'Hi admin,<br><br>Greetings from Curated Event Notifier.<br><br><a title=\"Click here to view event details\" href=\"/eventnotifier/EventController?action=view&id=2\">View event details</a>For any queries, mail us at info@eventnotifier.com<br><br>Thanks,<br>Curated Event Notifier Team.',0,'system@eventnotifier.com','2016-04-07 20:57:21','admin@eventnotifier.com',0,'New event is added',0,0);
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 
 
@@ -228,7 +238,7 @@ CREATE TABLE `user` (
   `memberSince` datetime default NULL,
   `address` varchar(255) default NULL,
   `birthDate` datetime default NULL,
-  `city` varchar(255) default NULL,
+  `cityId` int(10) unsigned default NULL,
   `education` varchar(255) default NULL,
   `occupation` varchar(255) default NULL,
   `pincode` varchar(255) default NULL,
@@ -237,25 +247,26 @@ CREATE TABLE `user` (
   PRIMARY KEY  (`id`),
   KEY `FK36EBCBDDE61F97` (`categoryId`),
   CONSTRAINT `FK36EBCBDDE61F97` FOREIGN KEY (`categoryId`) REFERENCES `category` (`categoryId`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`id`,`email`,`firstname`,`gender`,`lastname`,`mobile`,`password`,`status`,`type`,`username`,`lastLogin`,`memberSince`,`address`,`birthDate`,`city`,`education`,`occupation`,`pincode`,`stateId`,`categoryId`) VALUES 
- (1,'admin@eventnotifier.com','Krunal','male','Shah','9376197557','navkar',1,1,'krunal','2016-04-03 23:20:04','2016-03-11 22:30:50','Rajpath Club','2004-03-12 00:00:00','Ahmedabad','Graduate','Business','380013',1,1),
- (2,'jinal@shah.com','Jinal','female','Shah','9376197557','navkar',1,2,'jinal','2016-04-02 17:48:07','2016-03-11 22:30:50','Rajpath Club','2004-03-12 00:00:00','Ahmedabad','Graduate','Business','380013',2,2),
- (3,'heli@gmail.com','Hemal','male','Shah','9376197557','navkar',1,2,'hemal','2016-03-11 23:05:02','2016-03-11 23:05:02','Rajpath Club','2004-03-12 00:00:00','Ahmedabad','Graduate','Business','380013',3,3),
- (4,'heli@gmail.com','Heli','female','Shah','9376197557','navkar',0,2,'heli','2016-03-12 17:32:47','2016-03-11 23:13:46','Rajpath Club','2004-03-12 00:00:00','Ahmedabad','Graduate','Business','380013',1,5),
- (5,'p@h.com','Parshva','male','Shah','9376197557','navkar',1,2,'parshva','2016-03-11 23:15:32','2016-03-11 23:15:32','Rajpath Club','2004-03-12 00:00:00','Ahmedabad','Graduate','Business','380013',2,4),
- (6,'pulkit@live.com','Pulkit','male','Thakor','9376197557','navkar',1,2,'pulkit','2016-03-13 18:07:17','2016-03-12 16:12:10','Rajpath Club','2004-03-12 00:00:00','Ahmedabad','Graduate','Business','380013',3,3),
- (9,'sadhna@gmail.com','Sadhna','female','Shah','9376197557','navkar',1,2,'sadhna','2016-03-12 20:25:49','2016-03-12 20:25:49','Rajpath Club','2004-03-12 00:00:00','Ahmedabad','Graduate','Business','380013',1,2),
- (10,'jay@gmail.com','Jay','male','Mehta','9376197557','navkar',1,2,'jaydeep','2016-03-13 09:50:49','2016-03-12 20:28:54','Rajpath Club','2004-03-12 00:00:00','Ahmedabad','Graduate','Business','380005',2,1),
- (11,'pujanpatel@gmail.com','Pujan','male','Patel','9376197557','navkar',1,2,'pujanpatel','2016-03-29 21:06:48','2016-03-29 21:06:48','9, Jinendra Apartment','2004-03-17 00:00:00','Ahmedabad','Graduate','Business Man','380005',3,3),
- (12,'namitk@gmail.com','Namit','male','Kewat','9376197557','namitk',1,2,'namitk','2016-03-29 22:56:33','2016-03-29 21:49:43','test','2004-03-29 00:00:00','Ahmedabad','Graduate','Business Man','380005',3,2),
- (13,'gaurav@gmail.com','Gaurav','male','Suri','9376197557','navkar',1,2,'gaurav','2016-04-03 23:17:42','2016-04-02 23:47:04','9, Jinendra Apartment','2004-04-02 00:00:00','Ahmedabad','Graduate','Business Man','380005',1,1);
+INSERT INTO `user` (`id`,`email`,`firstname`,`gender`,`lastname`,`mobile`,`password`,`status`,`type`,`username`,`lastLogin`,`memberSince`,`address`,`birthDate`,`cityId`,`education`,`occupation`,`pincode`,`stateId`,`categoryId`) VALUES 
+ (1,'admin@eventnotifier.com','Krunal','male','Shah','9376197557','navkar',1,1,'krunal','2016-04-03 23:20:04','2016-03-11 22:30:50','Rajpath Club','2004-03-12 00:00:00',1,'Graduate','Business','380013',1,1),
+ (2,'jinal@shah.com','Jinal','female','Shah','9376197557','navkar',1,2,'jinal','2016-04-02 17:48:07','2016-03-11 22:30:50','Rajpath Club','2004-03-12 00:00:00',1,'Graduate','Business','380013',2,2),
+ (3,'heli@gmail.com','Hemal','male','Shah','9376197557','navkar',1,2,'hemal','2016-03-11 23:05:02','2016-03-11 23:05:02','Rajpath Club','2004-03-12 00:00:00',1,'Graduate','Business','380013',3,3),
+ (4,'heli@gmail.com','Heli','female','Shah','9376197557','navkar',0,2,'heli','2016-03-12 17:32:47','2016-03-11 23:13:46','Rajpath Club','2004-03-12 00:00:00',1,'Graduate','Business','380013',1,5),
+ (5,'p@h.com','Parshva','male','Shah','9376197557','navkar',1,2,'parshva','2016-03-11 23:15:32','2016-03-11 23:15:32','Rajpath Club','2004-03-12 00:00:00',1,'Graduate','Business','380013',2,4),
+ (6,'pulkit@live.com','Pulkit','male','Thakor','9376197557','navkar',1,2,'pulkit','2016-03-13 18:07:17','2016-03-12 16:12:10','Rajpath Club','2004-03-12 00:00:00',1,'Graduate','Business','380013',3,3),
+ (9,'sadhna@gmail.com','Sadhna','female','Shah','9376197557','navkar',1,2,'sadhna','2016-03-12 20:25:49','2016-03-12 20:25:49','Rajpath Club','2004-03-12 00:00:00',1,'Graduate','Business','380013',1,2),
+ (10,'jay@gmail.com','Jay','male','Mehta','9376197557','navkar',1,2,'jaydeep','2016-03-13 09:50:49','2016-03-12 20:28:54','Rajpath Club','2004-03-12 00:00:00',1,'Graduate','Business','380005',2,1),
+ (11,'pujanpatel@gmail.com','Pujan','male','Patel','9376197557','navkar',1,2,'pujanpatel','2016-03-29 21:06:48','2016-03-29 21:06:48','9, Jinendra Apartment','2004-03-17 00:00:00',1,'Graduate','Business Man','380005',3,3),
+ (12,'namitk@gmail.com','Namit','male','Kewat','9376197557','namitk',1,2,'namitk','2016-03-29 22:56:33','2016-03-29 21:49:43','test','2004-03-29 00:00:00',1,'Graduate','Business Man','380005',3,2),
+ (13,'gaurav@gmail.com','Gaurav','male','Suri','9376197557','navkar',1,2,'gaurav','2016-04-03 23:17:42','2016-04-02 23:47:04','9, Jinendra Apartment','2004-04-02 00:00:00',1,'Graduate','Business Man','380005',1,1),
+ (14,'hemang@cybage.com','hemang','male','hemang','9376197557','hemang',1,2,'hemang',NULL,'2016-04-07 20:36:31','9, Jinendra Apartment','2004-04-07 00:00:00',1,'Graduate','Business Man','380005',1,6);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 

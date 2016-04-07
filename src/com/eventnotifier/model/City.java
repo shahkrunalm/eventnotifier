@@ -28,10 +28,13 @@ public class City {
 	@ManyToOne
 	@JoinColumn(name = "stateId")
 	private State state;
-	
+
 	@OneToMany(mappedBy = "city")
 	private Set<Event> events;
-	
+
+	@OneToMany(mappedBy = "city")
+	private Set<User> users;
+
 	public int getStatus() {
 		return status;
 	}
