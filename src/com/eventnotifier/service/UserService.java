@@ -9,7 +9,12 @@ import javax.servlet.http.HttpSession;
 import com.eventnotifier.model.User;
 
 public interface UserService {
+	
+	User login(HttpServletRequest request, HttpServletResponse response);
+
 	void register(HttpServletRequest request, HttpServletResponse response);
+	
+	void update(User user);
 
 	int changePassword(HttpServletRequest request, HttpServletResponse response);
 

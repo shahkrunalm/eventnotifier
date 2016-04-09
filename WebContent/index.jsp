@@ -35,26 +35,30 @@
 		user = (User) session.getAttribute("user");
 		List<Event> eventList = (List<Event>) application
 				.getAttribute("upcomingEventList");
+		List<Category> categoryList = (List<Category>) application
+				.getAttribute("loadedCategoryList");
+		List<State> stateList = (List<State>) application
+				.getAttribute("loadedStateList");
 	%>
 	<div id="wrapper">
-		
-			<div id="rowcontent">
-				<div class="box">
-					<table border="0" width="100%">
-						<tr>
-							<td><span class="logo">Curated Event Notifier</span></td>
-							<td align="right"><a
-								href='<%=request.getContextPath() + "/index.jsp"%>'
-								title="click here to go to home page">Home</a> | <a
-								href='<%=request.getContextPath() + "/login.jsp"%>'
-								title="click here to login">Login</a> | <a
-								href='<%=request.getContextPath() + "/sign-up.jsp"%>'
-								title="click here to sign up">Sign up</a></td>
-						</tr>
-					</table>
-				</div>
+
+		<div id="rowcontent">
+			<div class="box">
+				<table border="0" width="100%">
+					<tr>
+						<td><span class="logo">Curated Event Notifier</span></td>
+						<td align="right"><a
+							href='<%=request.getContextPath() + "/index.jsp"%>'
+							title="click here to go to home page">Home</a> | <a
+							href='<%=request.getContextPath() + "/login.jsp"%>'
+							title="click here to login">Login</a> | <a
+							href='<%=request.getContextPath() + "/sign-up.jsp"%>'
+							title="click here to sign up">Sign up</a></td>
+					</tr>
+				</table>
 			</div>
-<div id="page">
+		</div>
+		<div id="page">
 			<div id="content">
 				<div class="box">
 					<a href='<%=request.getContextPath() + "/index.jsp"%>'>Home</a> |
@@ -100,8 +104,9 @@
 								title="view event details"><%=event.getEventName()%></a></td>
 						</tr>
 						<tr>
-							<td colspan="4" align="left"><b>Venue: </b> <%=event.getAddress() + ", " + event.getCity().getCityName()
-							+ ", " + event.getPincode() + " "
+							<td colspan="4" align="left"><b>Venue: </b> <%=event.getAddress() + ", "
+							+ event.getCity().getCityName() + ", "
+							+ event.getPincode() + " "
 							+ event.getState().getStateName()%></td>
 						</tr>
 						<!-- 
@@ -183,10 +188,29 @@
 			%>
 			<div id="sidebar">
 				<div class="box">
-					<span class="bold">State wise events</span> <br> coming soon
+					<span class="bold">State wise events</span> <br>
+					<%
+						for (State state : stateList) {
+					%><a
+						href=<%=request.getContextPath()
+							+ "/EventController?action=state&id="
+							+ state.getStateId()%>
+						title="Click here to view state wise event list"><%=state.getStateName()%></a>
+					<%
+						}
+					%>
 				</div>
 				<br> <span class="bold">Category wise events</span> <br>
-				coming soon
+				<%
+					for (Category category : categoryList) {
+				%><a
+					href=<%=request.getContextPath()
+							+ "/EventController?action=category&id="
+							+ category.getCategoryId()%>
+					title="Click here to view category wise event list"><%=category.getCategoryName()%></a>
+				<%
+					}
+				%>
 				<div class="box"></div>
 			</div>
 			<!-- div sidebar end -->

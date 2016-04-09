@@ -87,15 +87,36 @@ public class EventController extends HttpServlet {
 			List<Event> eventList = this.eventService.getMyEventList(request,
 					response);
 			request.setAttribute("eventList", eventList);
-			request.getRequestDispatcher("view-event-list.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("view-event-list.jsp").forward(
+					request, response);
 
-		}else if (action.equals(Constants.VIEW_LIST)) {
+		} else if (action.equals(Constants.VIEW_LIST)) {
 			List<Event> eventList = this.eventService.getEventList(request,
 					response);
 			request.setAttribute("eventList", eventList);
-			request.getRequestDispatcher("view-event-list.jsp").forward(request,
-					response);
+			request.getRequestDispatcher("view-event-list.jsp").forward(
+					request, response);
+
+		} else if (action.equals(Constants.CITY)) {
+			List<Event> eventList = this.eventService.getCityWiseEventList(
+					request, response);
+			request.setAttribute("eventList", eventList);
+			request.getRequestDispatcher("view-upcoming-event-list.jsp").forward(
+					request, response);
+
+		} else if (action.equals(Constants.CATEGORY)) {
+			List<Event> eventList = this.eventService.getCategoryWiseEventList(
+					request, response);
+			request.setAttribute("eventList", eventList);
+			request.getRequestDispatcher("view-upcoming-event-list.jsp").forward(
+					request, response);
+
+		} else if (action.equals(Constants.STATE)) {
+			List<Event> eventList = this.eventService.getStateWiseEventList(
+					request, response);
+			request.setAttribute("eventList", eventList);
+			request.getRequestDispatcher("view-upcoming-event-list.jsp").forward(
+					request, response);
 
 		}
 

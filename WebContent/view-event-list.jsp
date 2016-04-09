@@ -48,12 +48,13 @@
 						</tr>
 					</table>
 					<%
-						} else if(user != null && user.getType() == 2) {
+						} else if (user != null && user.getType() == 2) {
 					%>
 
 					<table>
 						<tr>
-							<td><a
+							<td><a href="add-event.jsp" title="Click here to add event">add</a>
+								| <a
 								href='<%=request.getContextPath()
 						+ "/EventController?action=view-my-event-list&status=1"%>'
 								title="Click here to view approved event list">approved</a> | <a
@@ -88,6 +89,8 @@
 							<td class="bold" align="center" width="20%">Start Date</td>
 							<td class="bold" align="center" width="12%">End Date</td>
 							<td class="bold" align="center" width="12%">Category</td>
+							<td class="bold" align="center" width="12%">State</td>
+							<td class="bold" align="center" width="12%">City</td>
 							<td class="bold" align="center" width="10%">Status</td>
 						</tr>
 						<%
@@ -103,14 +106,16 @@
 								title="Click here to view event detail"><%=event.getEventName()%></a></td>
 							<td align="center"><%=DateUtil.getOnlyDate(event.getStartDate())%></td>
 							<td align="center"><%=DateUtil.getOnlyDate(event.getEndDate())%></td>
-							<td align="center"><%=event.getCategory().getCategoryName() %></td>
+							<td align="center"><%=event.getCategory().getCategoryName()%></td>
+							<td align="center"><%=event.getState().getStateName()%></td>
+							<td align="center"><%=event.getCity().getCityName()%></td>
 							<td align="center">
 								<%
 									if (event.getStatus() == 1) {
 								%><span class="boldgreen">approved</span> <%
- 	} else if(event.getStatus() == 0) {
+ 	} else if (event.getStatus() == 0) {
  %><span class="boldred">pending</span> <%
- 	}else if(event.getStatus() == 2) {
+ 	} else if (event.getStatus() == 2) {
  %><span class="boldred">rejected</span> <%
  	}
  %>

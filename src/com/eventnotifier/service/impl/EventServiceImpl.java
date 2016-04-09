@@ -29,13 +29,13 @@ public class EventServiceImpl implements EventService {
 
 	private static final Logger LOGGER = Logger
 			.getLogger(EventServiceImpl.class);
-
-	private MessageDAO messageDAO = null;
 	private StateService stateService = null;
 	private CityService cityService = null;
 	private CategoryService categoryService = null;
 	private UserService userService = null;
 	private MessageService messageService = null;
+	private EventDAO eventDAO = null;
+	private MessageDAO messageDAO = null;
 
 	@Override
 	public void addEvent(HttpServletRequest request,
@@ -104,8 +104,8 @@ public class EventServiceImpl implements EventService {
 		event.setCreatedOn(new Date());
 		event.setIpAddress(request.getRemoteAddr());
 		event.setStatus(0);
-		EventDAO eventDAO = new EventDAOImpl();
-		eventDAO.save(event);
+		this.eventDAO = new EventDAOImpl();
+		this.eventDAO.save(event);
 
 		this.messageDAO = new MessageDAOImpl();
 		Message message = getMessage(request, event);
@@ -127,7 +127,7 @@ public class EventServiceImpl implements EventService {
 	public Event viewEvent(HttpServletRequest request,
 			HttpServletResponse response) {
 		int id = Integer.parseInt(request.getParameter("id"));
-		EventDAO eventDAO = new EventDAOImpl();
+		this.eventDAO = new EventDAOImpl();
 		Event event = eventDAO.getEvent(id);
 		return event;
 	}
@@ -135,7 +135,7 @@ public class EventServiceImpl implements EventService {
 	@Override
 	public Event updateEvent(HttpServletRequest request,
 			HttpServletResponse response) {
-		EventDAO eventDAO = new EventDAOImpl();
+		this.eventDAO = new EventDAOImpl();
 		int id = 4;
 		LOGGER.info("Update Event with id : " + id);
 		Event event = eventDAO.getEvent(id);
@@ -148,7 +148,7 @@ public class EventServiceImpl implements EventService {
 	@Override
 	public void deleteEvent(HttpServletRequest request,
 			HttpServletResponse response) {
-		EventDAO eventDAO = new EventDAOImpl();
+		this.eventDAO = new EventDAOImpl();
 		int id = 1;
 		LOGGER.info("Delete Event with id : " + id);
 		Event event = eventDAO.getEvent(id);
@@ -167,7 +167,7 @@ public class EventServiceImpl implements EventService {
 		User user = (User) session.getAttribute("user");
 		int id = Integer.parseInt(request.getParameter("id"));
 		String status = request.getParameter("status");
-		EventDAO eventDAO = new EventDAOImpl();
+		this.eventDAO = new EventDAOImpl();
 		Event event = eventDAO.getEvent(id);
 
 		int userId = event.getUser().getId();
@@ -211,16 +211,40 @@ public class EventServiceImpl implements EventService {
 		int status = Integer.parseInt(request.getParameter("status"));
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
-		EventDAO eventDAO = new EventDAOImpl();
-		return eventDAO.getMyEventList(user.getUsername(), status);
+		this.eventDAO = new EventDAOImpl();
+		return eventDAO.getMyEventList(user.getId(), status);
 	}
 
 	@Override
 	public List<Event> getEventList(HttpServletRequest request,
 			HttpServletResponse response) {
 		int status = Integer.parseInt(request.getParameter("status"));
-		EventDAO eventDAO = new EventDAOImpl();
+		this.eventDAO = new EventDAOImpl();
 		return eventDAO.getListByCriteria(new Event(), "id", status);
+	}
+
+	@Override
+	public List<Event> getCategoryWiseEventList(HttpServletRequest request,
+			HttpServletResponse response) {
+		int id = Integer.parseInt(request.getParameter("id"));
+		this.eventDAO = new EventDAOImpl();
+		return this.eventDAO.getCategoryWiseEventList(id);
+	}
+
+	@Override
+	public List<Event> getStateWiseEventList(HttpServletRequest request,
+			HttpServletResponse response) {
+		int id = Integer.parseInt(request.getParameter("id"));
+		this.eventDAO = new EventDAOImpl();
+		return this.eventDAO.getStateWiseEventList(id);
+	}
+
+	@Override
+	public List<Event> getCityWiseEventList(HttpServletRequest request,
+			HttpServletResponse response) {
+		int id = Integer.parseInt(request.getParameter("id"));
+		this.eventDAO = new EventDAOImpl();
+		return this.eventDAO.getCityWiseEventList(id);
 	}
 
 }

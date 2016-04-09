@@ -38,19 +38,11 @@
 							<td>&nbsp;</td>
 						</tr>
 						<tr>
-							<td><a href="add-event.jsp" title="click here to add event">Add Event</a>
-								| <%
-								if (user.getType() == 1) {
-							%><a
-								href='<%=request.getContextPath() + "/admin-dashboard.jsp"%>'
-								title="click here to go to dashboard">Dashboard</a>
-								<%
-									} else {
-								%><a href='<%=request.getContextPath() + "/user-dashboard.jsp"%>'
-								title="click here to go to dashboard">Dashboard</a>
-								<%
-									}
-								%></td>
+							<td>Event: <a href="add-event.jsp"
+								title="Click here to add event">add</a> | <a
+								href='<%=request.getContextPath()
+					+ "/EventController?action=view-my-event-list&status=-1"%>'
+								title="Click here to view my event list">view</a></td>
 						</tr>
 						<tr>
 							<td>&nbsp;</td>

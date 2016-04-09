@@ -22,6 +22,15 @@ public interface EventService {
 	List<Event> getEventList(HttpServletRequest request,
 			HttpServletResponse response);
 
+	List<Event> getCategoryWiseEventList(HttpServletRequest request,
+			HttpServletResponse response);
+
+	List<Event> getStateWiseEventList(HttpServletRequest request,
+			HttpServletResponse response);
+
+	List<Event> getCityWiseEventList(HttpServletRequest request,
+			HttpServletResponse response);
+
 	List<Event> getMyEventList(HttpServletRequest request,
 			HttpServletResponse response);
 }

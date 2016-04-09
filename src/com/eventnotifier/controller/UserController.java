@@ -46,10 +46,7 @@ public class UserController extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		final String action = request.getParameter(Constants.ACTION);
 		if (action.equals(Constants.LOGIN)) {
-			String username = request.getParameter("username");
-			String password = request.getParameter("password");
-			UserDAO userDAO = new UserDAOImpl();
-			User user = userDAO.login(username, password);
+			User user = this.userService.login(request, response);
 			if (user != null) {
 				if (user.getStatus() == 0) {
 					response.sendRedirect(request.getContextPath()
@@ -64,7 +61,7 @@ public class UserController extends HttpServlet {
 						session.setAttribute("lastLogin", "N.A.");
 					}
 					user.setLastLogin(new Date());
-					userDAO.update(user);
+					this.userService.update(user);
 					if (user.getType() == Constants.ADMIN_USER) {
 						response.sendRedirect(request.getContextPath()
 								+ "/admin-dashboard.jsp");

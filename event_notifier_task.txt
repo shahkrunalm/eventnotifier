@@ -1,10 +1,9 @@
 pending
 
 upload event image in event-acknowledgement file
-city from dropdown
-Last login exception on console
 Event paid/fee. visible text box based on condition
-
+check user name using ajax
+view my events - all is not working
 -----------------------
 future enhancement
 email notification

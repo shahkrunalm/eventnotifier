@@ -41,8 +41,7 @@
 				</div>
 				<div id="inner_content">
 					<div class="box">
-						Message: <a
-							href='compose-message.jsp'
+						Message: <a href='compose-message.jsp'
 							title="click here to compose message">compose</a> | <a
 							href='<%=request.getContextPath()
 					+ "/MessageController?action=inbox"%>'
@@ -77,7 +76,10 @@
 				<div id="inner_content">
 					<div class="box">
 						City: <a href="add-city.jsp" title="click here to add city">add</a>
-						| <a href='<%=request.getContextPath() + "/CategoryController?action=view-list&status=-1" %>' title="click here to view category list">view</a>
+						| <a
+							href='<%=request.getContextPath()
+					+ "/CityController?action=view-list&status=-1"%>'
+							title="click here to view category list">view</a>
 					</div>
 				</div>
 				<!-- 
@@ -96,15 +98,6 @@
 			</div>
 			</div>
 
-			<div id="inner_content">
-			<div class="box">
-				Message: <a href="compose-message.jsp" title="click here to compose message">compose</a> | 
-						<a href="inbox" title="click here to go to inbox">inbox</a> | 
-						<a href="sent-messages" title="click here to view sent message">sent</a>
-			</div>
-			</div>
-			
-			
 			-->
 			</div>
 			<br class="clearfix" />

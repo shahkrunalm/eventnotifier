@@ -155,4 +155,18 @@ public class UserServiceImpl implements UserService {
 		return this.userDAO.getUserListByCategoryId(id);
 	}
 
+	@Override
+	public User login(HttpServletRequest request, HttpServletResponse response) {
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		this.userDAO = new UserDAOImpl();
+		return this.userDAO.login(username, password);
+	}
+
+	@Override
+	public void update(User user) {
+		this.userDAO = new UserDAOImpl();
+		this.userDAO.update(user);
+	}
+
 }
