@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.eventnotifier.dao.UserDAO;
-import com.eventnotifier.dao.impl.UserDAOImpl;
 import com.eventnotifier.model.User;
 import com.eventnotifier.service.UserService;
 import com.eventnotifier.service.impl.UserServiceImpl;
@@ -113,6 +111,8 @@ public class UserController extends HttpServlet {
 				request.getRequestDispatcher("change-password.jsp").forward(
 						request, response);
 			}
+		} else if (action.equals(Constants.IS_USERNAME_AVAILABLE)) {
+
 		}
 
 	}

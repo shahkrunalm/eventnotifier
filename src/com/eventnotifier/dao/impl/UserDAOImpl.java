@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import com.eventnotifier.dao.UserDAO;
@@ -63,10 +62,22 @@ public class UserDAOImpl extends BaseDAOImpl<User, Long> implements UserDAO {
 				.add(Restrictions.eq("category.categoryId", id)).list();
 	}
 
-	/*
-	 * @Override public void save(User user) { Session session =
-	 * HibernateUtil.getSessionFactory().getCurrentSession(); Transaction tx =
-	 * session.beginTransaction(); session.persist(user); tx.commit(); }
-	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean isUserNameAvailable(String username) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
+		List<User> userList = null;
+		try {
+			userList = session.createCriteria(User.class)
+					.add(Restrictions.eq("username", username)).list();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (userList != null && userList.size() == 0)
+			return true;
+		else
+			return false;
+	}
 
 }
