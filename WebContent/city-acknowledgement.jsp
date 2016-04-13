@@ -5,42 +5,38 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>City Acknowledgement - Curated Event Notifier</title>
-<%@ include file="header.jsp"%>
+<%@ include file="corlate-header-files.jsp"%>
 </head>
-<body>
-	<%@ include file="menu.jsp"%>
-	<div id="wrapper">
-		<div id="page">
-			<div id="content">
-				<div class="box">
-					<table id="table-page-heading" border="0">
-						<tr>
-							<td><h4>City Acknowledgement</h4></td>
-						</tr>
-					</table>
-					<table width="100%">
-						<tr>
-							<td>City added successfully.</td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-						</tr>
-
-						<tr>
-							<td>City: <a href="add-city.jsp"
-								title="click here to add city">add</a> | <a
-								href='<%=request.getContextPath() + "/CityController?action=view-list&status=-1" %>' title="click here to view city list">view</a>
-							</td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-		</div>
-		<br class="clearfix" />
+<body class="homepage">
+	<%@ include file="corlate-header.jsp"%>
+	<div class="container">
+		<table border="0" width="100%" id="table-page-heading">
+			<tr>
+				<td colspan="2">City Acknowledgement</td>
+			</tr>
+		</table>
+		<table border="0" width="100%" id="table-with-padding">
+			<tr>
+				<td></td>
+			</tr>
+			<tr>
+				<td>City added successfully.</td>
+			</tr>
+			<tr>
+				<td></td>
+			</tr>
+			<tr>
+				<td><a href="add-city.jsp" title="click here to add city">add</a>
+					| <a
+					href='<%=request.getContextPath()
+					+ "/CityController?action=view-list&status=-1"%>'
+					title="click here to view city list">view</a></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+		<hr>
 	</div>
-	<%@ include file="footer.jsp"%>
 </body>
 </html>

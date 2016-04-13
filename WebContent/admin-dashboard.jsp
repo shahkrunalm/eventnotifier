@@ -79,7 +79,7 @@
 						| <a
 							href='<%=request.getContextPath()
 					+ "/CityController?action=view-list&status=-1"%>'
-							title="click here to view category list">view</a>
+							title="click here to view city list">view</a>
 					</div>
 				</div>
 				<!-- 

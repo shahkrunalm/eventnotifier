@@ -5,54 +5,49 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Add Category - Curated Event Notifier</title>
-<%@ include file="header.jsp"%>
+<%@ include file="corlate-header-files.jsp"%>
 </head>
-<script type="text/javascript">
-	$().ready(function() {
-		$("#category-form").validate({
-			errorClass : "my-error-class",
-			rules : {
-				categoryName : "required",
-			}
-		});
-	});
-</script>
-<body>
-	<%@ include file="menu.jsp"%>
-	<%--<%@ include file="check-permission.jsp" %> --%>
-
-	<div id="wrapper">
-		<div id="page">
-			<div id="content">
-				<div class="box">
-					<table id="table-page-heading" border="0">
-						<tr>
-							<td><h4>Add Category</h4></td>
-						</tr>
-					</table>
-					<form name="category-form" id="category-form"
-						action="./CategoryController" method="post">
-						<table width="100%">
-							<tr>
-								<td class="bold" width="10%"></td>
-								<td><input type="hidden" name="action" value="add" /></td>
-							</tr>
-							<tr>
-								<td width="12%" class="bold">Category Name</td>
-								<td><input name="categoryName" id="categoryName" /></td>
-							</tr>
-							<tr>
-								<td>&nbsp;</td>
-								<td><input type="submit" value="Add" />&nbsp;&nbsp;<input
-									type="reset" value="Reset" /></td>
-							</tr>
-						</table>
-					</form>
-				</div>
-			</div>
-		</div>
-		<br class="clearfix" />
+<body class="homepage">
+	<%@ include file="corlate-header.jsp"%>
+	<div class="container">
+		<table border="0" width="100%" id="table-page-heading">
+			<tr>
+				<td colspan="2">Add Category</td>
+			</tr>
+		</table>
+		<form name="category-form" id="category-form"
+			action="./CategoryController" method="post">
+			<table border="0" width="100%" id="table-with-padding">
+				<tr>
+					<td class="bold" width="10%"></td>
+					<td><input type="hidden" name="action" value="add" /></td>
+				</tr>
+				<tr>
+					<td width="12%" class="bold">Category Name</td>
+					<td><input name="categoryName" id="categoryName" /></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><input type="submit" value="Add" />&nbsp;&nbsp;<input
+						type="reset" value="Reset" /></td>
+				</tr>
+				<tr>
+					<td colspan="2"></td>
+				</tr>
+			</table>
+		</form>
+		<hr>
 	</div>
-	<%@ include file="footer.jsp"%>
+	<%@ include file="footer-files.jsp"%>
+	<script type="text/javascript">
+		$().ready(function() {
+			$("#category-form").validate({
+				errorClass : "my-error-class",
+				rules : {
+					categoryName : "required",
+				}
+			});
+		});
+	</script>
 </body>
 </html>
