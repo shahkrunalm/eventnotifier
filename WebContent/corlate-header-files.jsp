@@ -5,6 +5,9 @@
 <link href="corlate/css/prettyPhoto.css" rel="stylesheet">
 <link href="corlate/css/main.css" rel="stylesheet">
 <link href="corlate/css/responsive.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css"
+	href="css/ui-lightness/jquery-ui-1.8.20.custom.css" />
 <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>

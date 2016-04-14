@@ -31,9 +31,6 @@
 					<td><input type="submit" value="Add" />&nbsp;&nbsp;<input
 						type="reset" value="reset" /></td>
 				</tr>
-				<tr>
-					<td colspan="2"></td>
-				</tr>
 			</table>
 		</form>
 		<hr>

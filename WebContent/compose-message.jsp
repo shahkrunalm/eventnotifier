@@ -19,7 +19,7 @@
 	<div class="container">
 		<table border="0" width="100%" id="table-page-heading">
 			<tr>
-				<td colspan="2">Add Category</td>
+				<td colspan="2">Compose Message</td>
 			</tr>
 		</table>
 		<table id="table-with-padding">
