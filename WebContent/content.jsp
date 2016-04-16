@@ -24,7 +24,7 @@
 									<div class="tab-pane fade" id="tab1">
 										<div class="media">
 											<div class="pull-left">
-												<img class="img-responsive" src="corlate/images/tab2.png">
+												<img class="img-responsive" src="images/tab2.png">
 											</div>
 											<div class="media-body">
 												<h2>Adipisicing elit</h2>
@@ -40,7 +40,7 @@
 									<div class="tab-pane fade active in" id="tab2">
 										<div class="media">
 											<div class="pull-left">
-												<img class="img-responsive" src="corlate/images/tab1.png">
+												<img class="img-responsive" src="images/tab1.png">
 											</div>
 											<div class="media-body">
 												<h2>Adipisicing elit</h2>
@@ -104,7 +104,7 @@
 						<div class="media testimonial-inner">
 							<div class="pull-left">
 								<img class="img-responsive img-circle"
-									src="corlate/images/testimonials1.png">
+									src="images/testimonials1.png">
 							</div>
 							<div class="media-body">
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
@@ -116,7 +116,7 @@
 						<div class="media testimonial-inner">
 							<div class="pull-left">
 								<img class="img-responsive img-circle"
-									src="corlate/images/testimonials1.png">
+									src="images/testimonials1.png">
 							</div>
 							<div class="media-body">
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,

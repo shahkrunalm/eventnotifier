@@ -1,33 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" isErrorPage="true"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Error Page - Curated Event Notifier</title>
-<%@ include file="header.jsp" %>
+<%@ include file="corlate-header-files.jsp"%>
 </head>
-<body>
-<%@ include file="menu.jsp" %>
-<div id="wrapper">
-<div id="page">
-<div id="content">
-<div class="box">
-<table id="table-page-heading" border="0">
-<tr>
-<td><h4>Page not found</h4></td>
-</tr>
-</table>
-<table>
-<tr><td>The page you requested is moved or removed, inconvenience regretted.</td></tr>
-<tr><td>&nbsp;</td></tr>
-<tr><td>&nbsp;</td></tr>
-</table>
-</div>
-</div>
-</div>
-<br class="clearfix" />
-</div>
-<%@ include file="footer.jsp" %>
+<body class="homepage">
+	<%@ include file="corlate-header.jsp"%>
+	<table border="0" width="100%" id="table-with-padding">
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+	<div class="container">
+		<section id="error" class="container text-center">
+		<h1>404, Page not found</h1>
+		<p>The Page you are looking for doesn't exist or an other error
+			occurred.</p>
+		<a class="btn btn-primary" href="index.jsp">GO BACK TO THE
+			HOMEPAGE</a> </section>
+		<!--/#error-->
+		<hr>
+	</div>
+	<%@ include file="footer-files.jsp"%>
 </body>
 </html>

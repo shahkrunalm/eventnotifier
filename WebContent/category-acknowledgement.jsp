@@ -12,7 +12,7 @@
 	<div class="container">
 		<table border="0" width="100%" id="table-page-heading">
 			<tr>
-				<td colspan="2">Category Acknowledgement</td>
+				<td>Category Acknowledgement</td>
 			</tr>
 		</table>
 		<table border="0" width="100%" id="table-with-padding">

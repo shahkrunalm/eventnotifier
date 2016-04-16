@@ -14,19 +14,19 @@
 			<ul>
 				<li><a href="#"><img class="img-responsive wow fadeInDown"
 						data-wow-duration="1000ms" data-wow-delay="300ms"
-						src="corlate/images/partners/partner1.png"></a></li>
+						src="images/partners/partner1.png"></a></li>
 				<li><a href="#"><img class="img-responsive wow fadeInDown"
 						data-wow-duration="1000ms" data-wow-delay="600ms"
-						src="corlate/images/partners/partner2.png"></a></li>
+						src="images/partners/partner2.png"></a></li>
 				<li><a href="#"><img class="img-responsive wow fadeInDown"
 						data-wow-duration="1000ms" data-wow-delay="900ms"
-						src="corlate/images/partners/partner3.png"></a></li>
+						src="images/partners/partner3.png"></a></li>
 				<li><a href="#"><img class="img-responsive wow fadeInDown"
 						data-wow-duration="1000ms" data-wow-delay="1200ms"
-						src="corlate/images/partners/partner4.png"></a></li>
+						src="images/partners/partner4.png"></a></li>
 				<li><a href="#"><img class="img-responsive wow fadeInDown"
 						data-wow-duration="1000ms" data-wow-delay="1500ms"
-						src="corlate/images/partners/partner5.png"></a></li>
+						src="images/partners/partner5.png"></a></li>
 			</ul>
 		</div>
 	</div>
