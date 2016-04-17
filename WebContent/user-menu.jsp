@@ -3,8 +3,8 @@
 	import="com.eventnotifier.model.*, java.util.List, com.eventnotifier.util.*"%>
 <div class="collapse navbar-collapse navbar-right">
 	<ul class="nav navbar-nav">
-		<li class="active"><a href="index.jsp">Home</a></li>
-		<li><a href="about-us.html">About Us</a></li>
+		<li><a href="index.jsp" title="Click here to go to home page">Home</a></li>
+		<li><a href="user-dashboard.jsp" title="Click here to go to dashboard">Dashboard</a></li>
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown">Event <i class="fa fa-angle-down"></i></a>
 			<ul class="dropdown-menu">
@@ -13,6 +13,8 @@
 					href='<%=request.getContextPath()
 					+ "/EventController?action=view-my-event-list&status=-1"%>'
 					title="Click here to view my event list">View</a></li>
+				<li><a href="view-upcoming-event-list.jsp"
+					title="Click here to view upcoming event list">Upcoming</a></li>
 				<li><a href="#">Category</a></li>
 				<li><a href="#">State</a></li>
 				<li><a href="#">City</a></li>

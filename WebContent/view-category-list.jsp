@@ -21,22 +21,29 @@
 				<td>View Category List</td>
 			</tr>
 		</table>
+		<%
+			if (user != null && user.getType() == 1) {
+		%>
 		<table id="table-with-padding">
 			<tr>
 				<td><a href="add-category.jsp"
 					title="click here to add category">add</a> | <a
 					href='<%=request.getContextPath()
-					+ "/CategoryController?action=view-list&status=1"%>'
+						+ "/CategoryController?action=view-list&status=1"%>'
 					title="click here to view active category list">active</a> | <a
 					href='<%=request.getContextPath()
-					+ "/CategoryController?action=view-list&status=0"%>'
+						+ "/CategoryController?action=view-list&status=0"%>'
 					title="click here to view de-active category list">de-active</a> |
 					<a
 					href='<%=request.getContextPath()
-					+ "/CategoryController?action=view-list&status=-1"%>'
+						+ "/CategoryController?action=view-list&status=-1"%>'
 					title="click here to view all category list">all</a></td>
 			</tr>
 		</table>
+		<%
+			}
+		%>
+
 		<table border="1" width="100%" id="table-with-padding">
 			<%
 				if (categoryList.size() == 0) {
@@ -51,7 +58,13 @@
 			<tr>
 				<td class="bold" align="center" width="10%">Sr. No.</td>
 				<td class="bold">Category Name</td>
+				<%
+					if (user != null && user.getType() == 1) {
+				%>
 				<td class="bold" align="center" width="10%">Status</td>
+				<%
+					}
+				%>
 			</tr>
 			<%
 				int i = 0;
@@ -59,7 +72,14 @@
 			%>
 			<tr>
 				<td align="center"><%=++i%></td>
-				<td><%=category.getCategoryName()%></td>
+				<td><a
+					href='<%=request.getContextPath()
+							+ "/EventController?action=category&id="
+							+ category.getCategoryId()%>'
+					title="Click here to view upcoming events of <%=category.getCategoryName()%>"><%=category.getCategoryName()%></a></td>
+				<%
+					if (user != null && user.getType() == 1) {
+				%>
 				<td align="center">
 					<%
 						if (category.getStatus() == 0) {
@@ -69,6 +89,10 @@
  	}
  %>
 				</td>
+				<%
+					}
+				%>
+
 			</tr>
 			<%
 				}

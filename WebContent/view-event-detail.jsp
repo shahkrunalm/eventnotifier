@@ -26,13 +26,12 @@
 						+ "/login.jsp?code=3");
 			}
 			if (user != null && user.getType() == 1 && event != null) {
+				if (event.getStatus() == 0) {
 		%>
 		<table border="0" width="100%" id="table-with-padding">
 			<tr>
 				<td>
-					<%
-						if (event.getStatus() == 0) {
-					%>
+
 					<div id="status">
 						<a href="javascript:changeEventStatus(<%=event.getId()%>,2)"
 							title="click here to reject event"><img alt="reject it"
@@ -42,13 +41,14 @@
 							title="click here to approve event"><img alt="reject it"
 							src="images/approve.png" title="click here to approve event"
 							height="28" width="28"></a>
-					</div> <%
- 	}
- 	}
- %>
+					</div>
 				</td>
 			</tr>
 		</table>
+		<%
+			}
+			}
+		%>
 		<%
 			if (event != null && user != null
 					&& event.getUser().getUsername().equals(user.getUsername())
@@ -127,14 +127,15 @@
 			%>
 
 		</table>
-		<%
-			}
-		%>
 		<table border="0" width="100%" id="table-page-heading">
 			<tr>
 				<td></td>
 			</tr>
 		</table>
+		<%
+			}
+		%>
+
 		<table border="0" width="100%" id="table-with-padding">
 			<%
 				if (event == null) {
