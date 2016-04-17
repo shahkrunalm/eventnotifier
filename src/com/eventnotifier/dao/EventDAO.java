@@ -9,6 +9,10 @@ public interface EventDAO extends BaseDAO<Event, Integer> {
 
 	List<Event> getUpcomingEventList();
 
+	List<Event> getOnGoingEventList();
+
+	List<Event> getPastEventList();
+
 	List<Event> getMyEventList(int id, int status);
 
 	List<Event> getStateWiseEventList(int stateId);
@@ -16,4 +20,6 @@ public interface EventDAO extends BaseDAO<Event, Integer> {
 	List<Event> getCityWiseEventList(int cityId);
 
 	List<Event> getCategoryWiseEventList(int categoryId);
+
+	List<Event> getEventListBySearch(String search);
 }

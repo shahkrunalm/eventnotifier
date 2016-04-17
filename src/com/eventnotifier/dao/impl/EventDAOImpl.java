@@ -35,7 +35,7 @@ public class EventDAOImpl extends BaseDAOImpl<Event, Integer> implements
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		return session.createCriteria(Event.class)
-				.add(Restrictions.ge("startDate", new Date()))
+				.add(Restrictions.gt("startDate", new Date()))
 				.add(Restrictions.eq("status", 1))
 				.addOrder(Order.asc("startDate")).list();
 	}
@@ -88,6 +88,42 @@ public class EventDAOImpl extends BaseDAOImpl<Event, Integer> implements
 		criteria.add(Restrictions.ge("startDate", new Date()));
 		criteria.add(Restrictions.eq("status", 1));
 		return criteria.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Event> getEventListBySearch(String search) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		Criteria criteria = session.createCriteria(Event.class);
+		criteria.add(Restrictions.like("eventName", search));
+		criteria.add(Restrictions.eq("status", 1));
+		criteria.addOrder(Order.desc("createdOn"));
+		return criteria.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Event> getOnGoingEventList() {
+		LOGGER.info("Getting ongoing event list");
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		return session.createCriteria(Event.class)
+				.add(Restrictions.eq("startDate", new Date()))
+				.add(Restrictions.eq("status", 1))
+				.addOrder(Order.asc("startDate")).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Event> getPastEventList() {
+		LOGGER.info("Getting past event list");
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		return session.createCriteria(Event.class)
+				.add(Restrictions.lt("endDate", new Date()))
+				.add(Restrictions.eq("status", 1))
+				.addOrder(Order.asc("endDate")).list();
 	}
 
 }

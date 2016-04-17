@@ -1,102 +1,93 @@
-<%@page import="com.eventnotifier.util.DateUtil"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+	pageEncoding="ISO-8859-1"
+	import="com.eventnotifier.model.*, java.util.List, com.eventnotifier.util.*"%>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Inbox - Curated Event Notifier</title>
 
-<%@ include file="header.jsp"%>
-</head>
-<body>
-	<%
-		List<Message> messageList = (List<Message>) request.getAttribute("messageList");
-	%>
-	<%@ include file="menu.jsp"%>
-	<div id="wrapper">
-		<div id="page">
-			<div id="content">
-				<div class="box">
-					<table id="table-page-heading" border="0">
-						<tr>
-							<td><h4>Inbox</h4></td>
-						</tr>
-					</table>
+<%
+	List<Message> messageList = (List<Message>) request.getAttribute("messageList");
+%>
+<%@ include file="corlate-header-files.jsp"%>
 
-					<table>
-						<tr>
-							<td><a href='compose-message.jsp'
-								title="click here to compose message">compose</a> | <a
-								href='<%=request.getContextPath()
+</head>
+<body class="homepage">
+	<%@ include file="corlate-header.jsp"%>
+	<div class="container wow fadeInDown">
+		<table border="0" width="100%" id="table-page-heading">
+			<tr>
+				<td>Inbox</td>
+			</tr>
+		</table>
+		<table id="table-with-padding">
+			<tr>
+				<td><a href='compose-message.jsp'
+					title="click here to compose message">compose</a> | <a
+					href='<%=request.getContextPath()
 					+ "/MessageController?action=inbox"%>'
-								title="click here to go to inbox">inbox</a> | <a
-								href='<%=request.getContextPath()
+					title="click here to go to inbox">inbox</a> | <a
+					href='<%=request.getContextPath()
 					+ "/MessageController?action=sent"%>'
-								title="click here to view sent message">sent</a></td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-						</tr>
-					</table>
-					<table border="0" width="100%" id="table-5">
-						<%
-							if(messageList.size()==0){
-						%>
-						<tr>
-							<td>No message available.</td>
-						</tr>
-						<%
-							}else{
-						%>
-						<tr>
-							<td class="bold" align="center">Sr. No.</td>
-							<td class="bold">From</td>
-							<td class="bold">Subject</td>
-							<td class="bold" align="center">Date</td>
-							<td class="bold" align="center">Status</td>
-							<td class="bold" align="center">Delete</td>
-						</tr>
-						<%
-							int i = 0;
-																															for(Message message : messageList){
-						%>
-						<tr>
-							<td align="center" width="7%"><%=++i%></td>
-							<td width="23%"><%=message.getMessageFrom()%></td>
-							<td width="35%"><a
-								href='<%=request.getContextPath() + "/MessageController?action=view&id="%>
+					title="click here to view sent message">sent</a></td>
+			</tr>
+		</table>
+		<table border="1" width="100%" id="table-with-padding">
+			<%
+				if(messageList.size()==0){
+			%>
+			<tr>
+				<td>No message available.</td>
+			</tr>
+			<%
+				}else{
+			%>
+			<tr>
+				<td class="bold" align="center">Sr. No.</td>
+				<td class="bold">From</td>
+				<td class="bold">Subject</td>
+				<td class="bold" align="center">Date</td>
+				<td class="bold" align="center">Status</td>
+				<td class="bold" align="center">Delete</td>
+			</tr>
+			<%
+				int i = 0;
+																																				for(Message message : messageList){
+			%>
+			<tr>
+				<td align="center" width="7%"><%=++i%></td>
+				<td width="23%"><%=message.getMessageFrom()%></td>
+				<td width="35%"><a
+					href='<%=request.getContextPath() + "/MessageController?action=view&id="%>
 								<%=message.getMessageId()%>'
-								title="click here to view message"><%=message.getSubject()%></a></td>
-							<td align="center" width="25%"><%=DateUtil.getFormattedDate(message.getMessageOn())%></td>
-							<td align="center" width="5%">
-								<%
-									if(message.getReadStatus()==0) {
-								%> <img alt="message" src="images/email.png"> <%
+					title="click here to view message"><%=message.getSubject()%></a></td>
+				<td align="center" width="25%"><%=DateUtil.getFormattedDate(message.getMessageOn())%></td>
+				<td align="center" width="5%">
+					<%
+						if(message.getReadStatus()==0) {
+					%> <img alt="message" src="images/email.png"> <%
  	}else if(message.getReadStatus()==1) {
  %> <img alt="message" src="images/email_open.png"> <%
  	}
  %>
-							</td>
-							<td align="center" width="5%"><a
-								href="javascript:deleteMessage(<%=message.getMessageId()%>)"
-								title="click here to delete this message"><img alt="delete"
-									src="images/delete.png"></a></td>
-						</tr>
-						<%
-							}
-																														}
-						%>
-					</table>
-					<form action='<%=request.getContextPath()%>/MessageController'
-						id="deleteMessageForm" name="deleteMessageForm" method="post">
-						<input name="messageId" type="hidden" id="messageId" /> <input
-							name="action" type="hidden" value="delete_from" />
-					</form>
-				</div>
-			</div>
-		</div>
-		<br class="clearfix" />
+				</td>
+				<td align="center" width="5%"><a
+					href="javascript:deleteMessage(<%=message.getMessageId()%>)"
+					title="click here to delete this message"><img alt="delete"
+						src="images/delete.png"></a></td>
+			</tr>
+			<%
+				}
+																																			}
+			%>
+		</table>
+		<form action='<%=request.getContextPath()%>/MessageController'
+			id="deleteMessageForm" name="deleteMessageForm" method="post">
+			<input name="messageId" type="hidden" id="messageId" /> <input
+				name="action" type="hidden" value="delete_from" />
+		</form>
+		<hr>
 	</div>
 	<script type="text/javascript">
 		function deleteMessage(id) {
@@ -108,6 +99,6 @@
 			}
 		}
 	</script>
-	<%@ include file="footer.jsp"%>
+	<%@ include file="footer-files.jsp"%>
 </body>
 </html>

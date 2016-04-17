@@ -32,7 +32,10 @@ public class LoadOnStartUp extends HttpServlet {
 		 */
 		getServletContext().setAttribute("upcomingEventList",
 				new EventServiceImpl().getUpcomingEventList());
-
+		getServletContext().setAttribute("onGoingEventList",
+				new EventServiceImpl().getOnGoingEventList());
+		getServletContext().setAttribute("pastEventList",
+				new EventServiceImpl().getPastEventList());
 		/**
 		 * category list
 		 */

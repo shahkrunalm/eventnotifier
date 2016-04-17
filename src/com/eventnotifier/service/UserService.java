@@ -28,4 +28,6 @@ public interface UserService {
 	List<User> getUserListByCategoryId(int id);
 
 	void logout(HttpSession session);
+
+	boolean checkUserName(HttpServletRequest request, HttpServletResponse response);
 }
