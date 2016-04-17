@@ -33,4 +33,13 @@ public interface EventService {
 
 	List<Event> getMyEventList(HttpServletRequest request,
 			HttpServletResponse response);
+
+	List<Event> getEventListBySearch(HttpServletRequest request,
+			HttpServletResponse response);
+
+	List<Event> getUpcomingEventList();
+
+	List<Event> getOnGoingEventList();
+
+	List<Event> getPastEventList();
 }

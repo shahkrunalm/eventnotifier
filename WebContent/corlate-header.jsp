@@ -26,9 +26,10 @@
 							<li><a href="#"><i class="fa fa-skype"></i></a></li>
 						</ul>
 						<div class="search">
-							<form role="form">
-								<input type="text" class="search-form" autocomplete="off"
-									placeholder="Search"> <i class="fa fa-search"></i>
+							<form role="form" action="./EventController">
+								<input type="hidden" name="action" value="search" /> <input
+									type="text" class="search-form" autocomplete="off"
+									placeholder="Search" name="search"> <i class="fa fa-search"></i>
 							</form>
 						</div>
 					</div>

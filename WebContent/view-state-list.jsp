@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
 	import="com.eventnotifier.model.*, java.util.List, com.eventnotifier.util.*"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>View State List - Curated Event Notifier</title>
@@ -15,7 +15,7 @@
 </head>
 <body class="homepage">
 	<%@ include file="corlate-header.jsp"%>
-	<div class="container">
+	<div class="container wow fadeInDown">
 		<table border="0" width="100%" id="table-page-heading">
 			<tr>
 				<td>View State List</td>
@@ -70,7 +70,11 @@
 			%>
 			<tr>
 				<td align="center"><%=++i%></td>
-				<td><%=state.getStateName()%></td>
+				<td><a
+					href='<%=request.getContextPath()
+							+ "/EventController?action=state&id="
+							+ state.getStateId()%>'
+					title="Click here to view upcoming events of <%=state.getStateName()%>"><%=state.getStateName()%></a></td>
 				<%
 					if (user != null && user.getType() == 1) {
 				%>

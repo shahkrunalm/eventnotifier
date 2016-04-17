@@ -155,8 +155,22 @@ public class EventServiceImpl implements EventService {
 		eventDAO.delete(event);
 	}
 
+	@Override
 	public List<Event> getUpcomingEventList() {
-		return new EventDAOImpl().getUpcomingEventList();
+		this.eventDAO = new EventDAOImpl();
+		return this.eventDAO.getUpcomingEventList();
+	}
+
+	@Override
+	public List<Event> getOnGoingEventList() {
+		this.eventDAO = new EventDAOImpl();
+		return this.eventDAO.getOnGoingEventList();
+	}
+
+	@Override
+	public List<Event> getPastEventList() {
+		this.eventDAO = new EventDAOImpl();
+		return this.eventDAO.getOnGoingEventList();
 	}
 
 	@Override
@@ -247,4 +261,11 @@ public class EventServiceImpl implements EventService {
 		return this.eventDAO.getCityWiseEventList(id);
 	}
 
+	@Override
+	public List<Event> getEventListBySearch(HttpServletRequest request,
+			HttpServletResponse response) {
+		String search = request.getParameter("search");
+		this.eventDAO = new EventDAOImpl();
+		return this.eventDAO.getEventListBySearch(search);
+	}
 }

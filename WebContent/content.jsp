@@ -1,5 +1,5 @@
 	<section id="content">
-		<div class="container">
+		<div class="container wow fadeInDown">
 			<div class="row">
 				<div class="col-xs-12 col-sm-8 wow fadeInDown">
 					<div class="tab-wrap">

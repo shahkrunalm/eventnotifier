@@ -1,6 +1,7 @@
 package com.eventnotifier.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
@@ -11,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.eventnotifier.dao.UserDAO;
-import com.eventnotifier.dao.impl.UserDAOImpl;
 import com.eventnotifier.model.User;
 import com.eventnotifier.service.UserService;
 import com.eventnotifier.service.impl.UserServiceImpl;
@@ -112,6 +111,14 @@ public class UserController extends HttpServlet {
 				}
 				request.getRequestDispatcher("change-password.jsp").forward(
 						request, response);
+			}
+		} else if (action.equals(Constants.CHECK_USER_NAME)) {
+			PrintWriter out = response.getWriter();
+			boolean isExist = this.userService.checkUserName(request, response);
+			if (isExist) {
+				out.write("false");
+			} else {
+				out.write("true");
 			}
 		}
 

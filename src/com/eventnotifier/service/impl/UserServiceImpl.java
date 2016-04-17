@@ -169,4 +169,12 @@ public class UserServiceImpl implements UserService {
 		this.userDAO.update(user);
 	}
 
+	@Override
+	public boolean checkUserName(HttpServletRequest request,
+			HttpServletResponse response) {
+		String username = request.getParameter("username");
+		this.userDAO = new UserDAOImpl();
+		return this.userDAO.checkUserName(username);
+	}
+
 }

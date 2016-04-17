@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Error Page - Curated Event Notifier</title>
@@ -17,7 +17,7 @@
 			<td>&nbsp;</td>
 		</tr>
 	</table>
-	<div class="container">
+	<div class="container wow fadeInDown">
 		<section id="error" class="container text-center">
 		<h1>404, Page not found</h1>
 		<p>The Page you are looking for doesn't exist or an other error

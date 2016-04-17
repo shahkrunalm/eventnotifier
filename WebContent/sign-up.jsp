@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Sign up - Curated Event Notifier</title>
@@ -18,7 +18,7 @@
 </head>
 <body class="homepage">
 	<%@ include file="corlate-header.jsp"%>
-	<div class="container">
+	<div class="container wow fadeInDown">
 		<table border="0" width="100%" id="table-page-heading">
 			<tr>
 				<td colspan="2">Sign up</td>
@@ -33,7 +33,7 @@
 				</tr>
 				<tr>
 					<td class="bold">User name
-					<td><input type="text" name="username"></td>
+					<td><input type="text" name="username" id="username"></td>
 				</tr>
 				<tr>
 					<td class="bold">Password</td>
@@ -115,7 +115,7 @@
 				<tr>
 					<td class="bold">City</td>
 					<td><select id="cityId" name="cityId">
-							<option>select</option>
+							<option>Select</option>
 					</select></td>
 				</tr>
 
@@ -130,8 +130,9 @@
 				</tr>
 				<tr>
 					<td>&nbsp;</td>
-					<td><input type="submit" name="sign up" value="Sign up">
-						<input type="reset"></td>
+					<td><input type="submit" name="sign up" value="Sign up"
+						class="btn btn-primary"> <input type="reset"
+						class="btn btn-primary"></td>
 				</tr>
 			</table>
 		</form>
@@ -142,46 +143,65 @@
 		$()
 				.ready(
 						function() {
-							$("#signup-form").validate({
-								errorClass : "my-error-class",
-								rules : {
-									firstname : "required",
-									lastname : "required",
-									birthDate : "required",
-									address : "required",
-									cityId : "required",
-									stateId : "required",
-									categoryId : "required",
-									username : {
-										required : true,
-										minlength : 6
-									},
-									password : {
-										required : true,
-										minlength : 6
-									},
-									reEnterPassword : {
-										required : true,
-										equalTo : "#password"
-									},
-									mobile : {
-										required : true,
-										digits : true,
-										minlength : 10,
-										maxlength : 10
-									},
-									email : {
-										required : true,
-										email : true
-									},
-									pincode : {
-										required : true,
-										digits : true,
-										minlength : 6,
-										maxlength : 6
-									}
-								}
-							});
+							$("#signup-form")
+									.validate(
+											{
+												errorClass : "my-error-class",
+												rules : {
+													firstname : "required",
+													lastname : "required",
+													birthDate : "required",
+													address : "required",
+													cityId : "required",
+													stateId : "required",
+													categoryId : "required",
+													username : {
+														required : true,
+														minlength : 6,
+														remote : {
+															url : "/eventnotifier/UserController?action=check-user-name",
+															type : "get",
+															data : {
+																username : function() {
+																	return $(
+																			"#username")
+																			.val();
+																}
+															}
+														}
+													},
+													password : {
+														required : true,
+														minlength : 6
+													},
+													reEnterPassword : {
+														required : true,
+														equalTo : "#password"
+													},
+													mobile : {
+														required : true,
+														digits : true,
+														minlength : 10,
+														maxlength : 10
+													},
+													email : {
+														required : true,
+														email : true
+													},
+													pincode : {
+														required : true,
+														digits : true,
+														minlength : 6,
+														maxlength : 6
+													}
+												},
+												messages : {
+													username : {
+														remote : jQuery.validator
+																.format(" Someone already has this username. try another.")
+													}
+												}
+											});
 
 							$("#stateId")
 									.change(

@@ -8,7 +8,7 @@
 <title>Upcoming Event List - Curated Event Notifier</title>
 <%
 	List<Event> eventList = (List<Event>) application
-			.getAttribute("upcomingEventList");
+			.getAttribute("pastEventList");
 %>
 <%@ include file="corlate-header-files.jsp"%>
 
@@ -18,7 +18,7 @@
 	<div class="container  wow fadeInDown">
 		<table border="0" width="100%" id="table-page-heading">
 			<tr>
-				<td>View Upcoming Event List</td>
+				<td>View Past Event List</td>
 			</tr>
 		</table>
 

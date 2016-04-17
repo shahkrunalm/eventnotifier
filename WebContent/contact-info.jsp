@@ -1,5 +1,5 @@
 	<section id="conatcat-info">
-		<div class="container">
+		<div class="container wow fadeInDown">
 			<div class="row">
 				<div class="col-sm-8">
 					<div class="media contact-info wow fadeInDown"

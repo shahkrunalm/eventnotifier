@@ -5,32 +5,31 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Upcoming Event List - Curated Event Notifier</title>
+<title>Searched Event List - Curated Event Notifier</title>
 <%
-	List<Event> eventList = (List<Event>) application
-			.getAttribute("upcomingEventList");
+	List<Event> eventList = (List<Event>) request
+			.getAttribute("eventList");
 %>
 <%@ include file="corlate-header-files.jsp"%>
 
 </head>
 <body class="homepage">
 	<%@ include file="corlate-header.jsp"%>
-	<div class="container  wow fadeInDown">
+	<div class="container">
 		<table border="0" width="100%" id="table-page-heading">
 			<tr>
-				<td>View Upcoming Event List</td>
+				<td>Event List - condition is pending for status 1 n status 3</td>
 			</tr>
 		</table>
-
-		<table id="table-with-padding">
+		<table id="table-with-padding" border="0">
 			<tr>
-				<td><a
-					href='<%=request.getContextPath()
-					+ "/CategoryController?action=view-list&status=1"%>'
-					title="click here to view all categories">categories</a> | <a
-					href='<%=request.getContextPath()
-					+ "/StateController?action=view-list&status=1"%>'
-					title="click here to view state list">states</a></td>
+				<td>
+					<form action="./EventController">
+						<input type="hidden" name="action" value="search" /> <input
+							type="text" placeholder="Search event name" name="search"> <i
+							class="fa fa-search"></i>
+					</form>
+				</td>
 			</tr>
 		</table>
 		<table border="1" width="100%" id="table-with-padding">

@@ -25,9 +25,9 @@ public class Constants {
 	public static final String DELETE_TO = "delete_to";
 	public static final String DELETE_FROM = "delete_from";
 	public static final String GET_CITIES = "get_cities";
-
+	public static final String SEARCH = "search";
 	public static final String STATE = "state";
 	public static final String CITY = "city";
 	public static final String CATEGORY = "category";
-	public static final String CATEGORIES = "categories";
+	public static final String CHECK_USER_NAME = "check-user-name";
 }

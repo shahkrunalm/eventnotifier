@@ -15,4 +15,6 @@ public interface UserDAO extends BaseDAO<User, Long> {
 	List<User> getUserListByCategoryId(int id);
 
 	public void logout(HttpServletRequest request, HttpServletResponse response);
+
+	public boolean checkUserName(String username);
 }

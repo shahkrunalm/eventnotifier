@@ -1,8 +1,8 @@
 <%@page import="com.eventnotifier.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>View User Profile - Curated Event Notifier</title>
@@ -14,7 +14,7 @@
 </head>
 <body class="homepage">
 	<%@ include file="corlate-header.jsp"%>
-	<div class="container">
+	<div class="container wow fadeInDown">
 		<table border="0" width="100%" id="table-page-heading">
 			<tr>
 				<td>View User Profile</td>
