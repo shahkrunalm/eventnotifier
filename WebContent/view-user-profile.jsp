@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>View User Profile - Curated Event Notifier</title>
+<title>View User Profile | Event Notifier</title>
 <%
 	User userProfile = (User) request.getAttribute("userProfile");
 %>

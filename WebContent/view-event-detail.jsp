@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>View Event Detail - Curated Event Notifier</title>
+<title>View Event Detail | Event Notifier</title>
 <%
 	Event event = (Event) request.getAttribute("event");
 %>

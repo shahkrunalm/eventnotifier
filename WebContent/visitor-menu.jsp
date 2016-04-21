@@ -10,9 +10,9 @@
 				<li><a href="view-upcoming-event-list.jsp"
 					title="Click here to view upcoming event list">Upcoming</a></li>
 				<li><a href="view-ongoing-event-list.jsp"
-					title="Click here to view upcoming event list">On Going</a></li>
+					title="Click here to view on going event list">On Going</a></li>
 				<li><a href="view-past-event-list.jsp"
-					title="Click here to view upcoming event list">Past</a></li>
+					title="Click here to view past event list">Past</a></li>
 				<li><a
 					href='<%=request.getContextPath()
 					+ "/CategoryController?action=view-list&status=1"%>'

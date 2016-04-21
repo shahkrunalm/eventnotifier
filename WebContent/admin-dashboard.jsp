@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Admin Dashboard - Curated Event Notifier</title>
+<title>Admin Dashboard | Event Notifier</title>
 </head>
 
 <%@ include file="corlate-header-files.jsp"%>

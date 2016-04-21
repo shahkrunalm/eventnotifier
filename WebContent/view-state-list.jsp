@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>View State List - Curated Event Notifier</title>
+<title>View State List | Event Notifier</title>
 <%
 	List<State> stateList = (List<State>) request
 			.getAttribute("stateList");

@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>View City List - Curated Event Notifier</title>
+<title>View City List | Event Notifier</title>
 
 <%
 	List<City> cityList = (List<City>) request.getAttribute("cityList");
@@ -21,21 +21,28 @@
 				<td>View City List</td>
 			</tr>
 		</table>
+		<%
+			if (user != null && user.getType() == 1) {
+		%>
 		<table id="table-with-padding">
 			<tr>
 				<td><a href="add-city.jsp" title="click here to add state">add</a>
 					| <a
 					href='<%=request.getContextPath()
-					+ "/CityController?action=view-list&status=1"%>'
+						+ "/CityController?action=view-list&status=1"%>'
 					title="click here to view active city list">active</a> | <a
 					href='<%=request.getContextPath()
-					+ "/CityController?action=view-list&status=0"%>'
+						+ "/CityController?action=view-list&status=0"%>'
 					title="click here to view de-active city list">de-active</a> | <a
 					href='<%=request.getContextPath()
-					+ "/CityController?action=view-list&status=-1"%>'
+						+ "/CityController?action=view-list&status=-1"%>'
 					title="click here to view all city list">all</a></td>
 			</tr>
 		</table>
+
+		<%
+			}
+		%>
 		<table border="1" width="100%" id="table-with-padding">
 			<%
 				if (cityList.size() == 0) {
@@ -48,10 +55,22 @@
 			%>
 			<tr>
 				<td class="bold" align="center">Sr. No.</td>
+				<%
+					if (user != null && user.getType() == 1) {
+				%>
 				<td class="bold" align="center">City Id</td>
+				<%
+					}
+				%>
 				<td class="bold">City Name</td>
 				<td class="bold" align="center">State Name</td>
+				<%
+					if (user != null && user.getType() == 1) {
+				%>
 				<td class="bold" align="center">Status</td>
+				<%
+					}
+				%>
 			</tr>
 			<%
 				int i = 0;
@@ -59,9 +78,26 @@
 			%>
 			<tr>
 				<td align="center" width="12%"><%=++i%></td>
+				<%
+					if (user != null && user.getType() == 1) {
+				%>
 				<td align="center" width="12%"><%=city.getCityId()%></td>
-				<td><%=city.getCityName()%></td>
-				<td align="center" width="12%"><%=city.getState().getStateName()%></td>
+				<%
+					}
+				%>
+				<td><a
+					href='<%=request.getContextPath()
+							+ "/EventController?action=city&id="
+							+ city.getCityId()%>'
+					title="Click here to view upcoming events of <%=city.getCityName()%>"><%=city.getCityName()%></a></td>
+				<td align="center" width="12%"><a
+					href='<%=request.getContextPath()
+							+ "/EventController?action=state&id="
+							+ city.getState().getStateId()%>'
+					title="Click here to view upcoming events of <%=city.getState().getStateName()%>"><%=city.getState().getStateName()%></a></td>
+				<%
+					if (user != null && user.getType() == 1) {
+				%>
 				<td align="center" width="12%">
 					<%
 						if (city.getStatus() == 1) {
@@ -71,6 +107,9 @@
  	}
  %>
 				</td>
+				<%
+					}
+				%>
 			</tr>
 			<%
 				}

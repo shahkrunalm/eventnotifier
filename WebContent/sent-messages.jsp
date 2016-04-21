@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Sent Messages - Curated Event Notifier</title>
+<title>Sent Messages | Event Notifier</title>
 
 <%
 	List<Message> messageList = (List<Message>) request.getAttribute("sentMessageList");

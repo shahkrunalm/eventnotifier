@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Add State - Curated Event Notifier</title>
+<title>Add State | Event Notifier</title>
 <%@ include file="corlate-header-files.jsp"%>
 </head>
 <body class="homepage">

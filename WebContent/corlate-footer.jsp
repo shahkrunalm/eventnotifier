@@ -10,8 +10,8 @@
 			<div class="col-sm-6">
 				<ul class="pull-right">
 					<li><a href="index.jsp">Home</a></li>
-					<li><a href="about-us.jsp">About Us</a></li>
-					<li><a href="#">Faq</a></li>
+					<li><a href="#">About Us</a></li>
+					<li><a href="faq.jsp">Faq</a></li>
 					<li><a href="#">Contact Us</a></li>
 				</ul>
 			</div>

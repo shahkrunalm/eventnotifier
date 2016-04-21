@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Sign up - Curated Event Notifier</title>
+<title>Sign up | Event Notifier</title>
 <%
 	final String code = request.getParameter("code");
 	if (code != null && code.equals("1"))

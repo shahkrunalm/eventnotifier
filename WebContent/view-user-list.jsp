@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>User List - Curated Event Notifier</title>
+<title>User List | Event Notifier</title>
 <%
 	List<User> userList = (List<User>) request.getAttribute("userList");
 %>

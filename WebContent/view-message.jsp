@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>View Message - Curated Event Notifier</title>
+<title>View Message | Event Notifier</title>
 <%
 	Message msg = (Message) request.getAttribute("message");
 %>

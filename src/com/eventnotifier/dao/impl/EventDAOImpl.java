@@ -123,7 +123,7 @@ public class EventDAOImpl extends BaseDAOImpl<Event, Integer> implements
 		return session.createCriteria(Event.class)
 				.add(Restrictions.lt("endDate", new Date()))
 				.add(Restrictions.eq("status", 1))
-				.addOrder(Order.asc("endDate")).list();
+				.addOrder(Order.desc("endDate")).list();
 	}
 
 }

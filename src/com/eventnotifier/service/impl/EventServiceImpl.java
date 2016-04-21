@@ -170,7 +170,7 @@ public class EventServiceImpl implements EventService {
 	@Override
 	public List<Event> getPastEventList() {
 		this.eventDAO = new EventDAOImpl();
-		return this.eventDAO.getOnGoingEventList();
+		return this.eventDAO.getPastEventList();
 	}
 
 	@Override

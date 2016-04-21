@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Compose Message - Curated Event Notifier</title>
+<title>Compose Message | Event Notifier</title>
 <%
 	String messageTo = null;
 	messageTo = (String) request.getAttribute("messageTo");

@@ -2,9 +2,10 @@ pending
 
 upload event image in event-acknowledgement file
 Event paid/fee. visible text box based on condition
-check user name using ajax
-view my events - all is not working
+edit event
 -----------------------
+scheduler
+feedback module
 future enhancement
 email notification
 multiple category subscription

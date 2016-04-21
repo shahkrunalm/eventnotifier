@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>View Category List - Curated Event Notifier</title>
+<title>View Category List | Event Notifier</title>
 <%
 	List<Category> categoryList = (List<Category>) request
 			.getAttribute("categoryList");

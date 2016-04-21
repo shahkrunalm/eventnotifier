@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Add Event - Curated Event Notifier</title>
+<title>Add Event | Event Notifier</title>
 <%
 	List<Category> categoryList = (List<Category>) application
 	.getAttribute("loadedCategoryList");

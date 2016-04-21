@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Category Acknowledgement - Curated Event Notifier</title>
+<title>Category Acknowledgement | Event Notifier</title>
 <%@ include file="corlate-header-files.jsp"%>
 </head>
 <body class="homepage">

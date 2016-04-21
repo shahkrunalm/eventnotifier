@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Add City - Curated Event Notifier</title>
+<title>Add City | Event Notifier</title>
 <%
 	List<State> stateList = (List<State>) application
 		.getAttribute("loadedStateList");

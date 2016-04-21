@@ -12,7 +12,7 @@
 				<div class="col-sm-6 col-xs-4">
 					<div class="top-number">
 						<p>
-							<i class="fa fa-phone-square"></i> +0123 456 70 90
+							<i class="fa fa-phone-square"></i> +91 8000 46 61 29
 						</p>
 					</div>
 				</div>
@@ -49,7 +49,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html"><img
+				<a class="navbar-brand" href="index.jsp"><img
 					src="images/logo.png" alt="logo"></a>
 			</div>
 			<%
