@@ -1,5 +1,6 @@
 package com.eventnotifier.service;
 
+import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,7 +40,7 @@ public interface EventService {
 
 	List<Event> getUpcomingEventList();
 
-	List<Event> getOnGoingEventList();
+	List<Event> getOnGoingEventList() throws ParseException;
 
 	List<Event> getPastEventList();
 }

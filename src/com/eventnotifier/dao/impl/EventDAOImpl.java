@@ -1,5 +1,8 @@
 package com.eventnotifier.dao.impl;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -104,12 +107,20 @@ public class EventDAOImpl extends BaseDAOImpl<Event, Integer> implements
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Event> getOnGoingEventList() {
+	public List<Event> getOnGoingEventList() throws ParseException {
 		LOGGER.info("Getting ongoing event list");
+		/*
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date fromDate = df.parse("2012-04-09 00:00:00");
+		Date toDate = df.parse("2012-04-09 23:59:59");
+		*/
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		LOGGER.info(dateFormat.parse(dateFormat.format(new Date())));
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		return session.createCriteria(Event.class)
-				.add(Restrictions.eq("startDate", new Date()))
+				.add(Restrictions.le("startDate", dateFormat.parse(dateFormat.format(new Date()))))
+				.add(Restrictions.gt("endDate", dateFormat.parse(dateFormat.format(new Date()))))
 				.add(Restrictions.eq("status", 1))
 				.addOrder(Order.asc("startDate")).list();
 	}

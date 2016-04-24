@@ -1,5 +1,6 @@
 package com.eventnotifier.service.impl;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -162,7 +163,7 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public List<Event> getOnGoingEventList() {
+	public List<Event> getOnGoingEventList() throws ParseException {
 		this.eventDAO = new EventDAOImpl();
 		return this.eventDAO.getOnGoingEventList();
 	}

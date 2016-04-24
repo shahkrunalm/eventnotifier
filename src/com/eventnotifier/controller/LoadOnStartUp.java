@@ -1,6 +1,7 @@
 package com.eventnotifier.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,8 +33,13 @@ public class LoadOnStartUp extends HttpServlet {
 		 */
 		getServletContext().setAttribute("upcomingEventList",
 				new EventServiceImpl().getUpcomingEventList());
-		getServletContext().setAttribute("onGoingEventList",
-				new EventServiceImpl().getOnGoingEventList());
+		try {
+			getServletContext().setAttribute("onGoingEventList",
+					new EventServiceImpl().getOnGoingEventList());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		getServletContext().setAttribute("pastEventList",
 				new EventServiceImpl().getPastEventList());
 		/**

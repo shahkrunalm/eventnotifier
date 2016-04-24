@@ -1,5 +1,6 @@
 package com.eventnotifier.dao;
 
+import java.text.ParseException;
 import java.util.List;
 
 import com.eventnotifier.model.Event;
@@ -9,7 +10,7 @@ public interface EventDAO extends BaseDAO<Event, Integer> {
 
 	List<Event> getUpcomingEventList();
 
-	List<Event> getOnGoingEventList();
+	List<Event> getOnGoingEventList() throws ParseException;
 
 	List<Event> getPastEventList();
 

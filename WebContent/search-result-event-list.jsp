@@ -18,7 +18,7 @@
 	<div class="container">
 		<table border="0" width="100%" id="table-page-heading">
 			<tr>
-				<td>Event List - condition is pending for status 1 n status 3</td>
+				<td>Event List</td>
 			</tr>
 		</table>
 		<table id="table-with-padding" border="0">

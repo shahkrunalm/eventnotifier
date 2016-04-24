@@ -10,8 +10,9 @@ future enhancement
 email notification
 multiple category subscription
 favourite event
+upload event image
 ----------------------
-Hi Krunal,
+Hi,
 
 Thanks for signing up for Mixmax.
 
