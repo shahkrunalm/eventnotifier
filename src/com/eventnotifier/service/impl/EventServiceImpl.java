@@ -1,13 +1,20 @@
 package com.eventnotifier.service.impl;
 
+import java.io.File;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.log4j.Logger;
 
 import com.eventnotifier.dao.EventDAO;
@@ -41,6 +48,7 @@ public class EventServiceImpl implements EventService {
 	@Override
 	public void addEvent(HttpServletRequest request,
 			HttpServletResponse response) {
+		Event event = new Event();
 		String eventName = request.getParameter("eventName");
 		String description = request.getParameter("description");
 		Date startDate = DateUtil.convertToSQLDate(request
@@ -72,7 +80,6 @@ public class EventServiceImpl implements EventService {
 		String emailId = request.getParameter("emailId");
 		String termsConditions = request.getParameter("termsConditions");
 
-		Event event = new Event();
 		event.setEventName(eventName);
 		event.setDescription(description);
 		event.setStartDate(startDate);
@@ -107,10 +114,11 @@ public class EventServiceImpl implements EventService {
 		event.setStatus(0);
 		this.eventDAO = new EventDAOImpl();
 		this.eventDAO.save(event);
-
+		LOGGER.info("Event added successfully");
 		this.messageDAO = new MessageDAOImpl();
 		Message message = getMessage(request, event);
 		this.messageDAO.save(message);
+		LOGGER.info("Message sent successfully");
 	}
 
 	private Message getMessage(HttpServletRequest request, Event event) {
@@ -268,5 +276,54 @@ public class EventServiceImpl implements EventService {
 		String search = request.getParameter("search");
 		this.eventDAO = new EventDAOImpl();
 		return this.eventDAO.getEventListBySearch(search);
+	}
+
+	@Override
+	public void uploadEventBanner(HttpServletRequest request,
+			HttpServletResponse response) {
+		Event event = (Event) request.getSession().getAttribute("evnt");
+		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+		if (isMultipart && event != null) {
+			int eventId = event.getId();
+			this.eventDAO = new EventDAOImpl();
+			event = eventDAO.getEvent(eventId);
+
+			// Create a factory for disk-based file items
+			FileItemFactory factory = new DiskFileItemFactory();
+
+			// Create a new file upload handler
+			ServletFileUpload upload = new ServletFileUpload(factory);
+
+			try {
+				// Parse the request
+				List /* FileItem */items = upload.parseRequest(request);
+				Iterator iterator = items.iterator();
+				while (iterator.hasNext()) {
+					FileItem item = (FileItem) iterator.next();
+					if (!item.isFormField()) {
+						String fileName = item.getName();
+						String uploadPath = (String) request.getServletContext().getInitParameter("uploadpath");
+						File path = new File(uploadPath
+								+ "/uploads");
+						if (!path.exists()) {
+							path.mkdirs();
+						}
+
+						File uploadedFile = new File(path + "/" + fileName);
+						LOGGER.info(uploadedFile.getAbsolutePath());
+						item.write(uploadedFile);
+						event.setFilePath("uploads/" + fileName);
+						this.eventDAO.update(event);
+						request.getSession().removeAttribute("evnt");
+					}
+				}
+			} catch (FileUploadException e) {
+				LOGGER.error("Exception occurred while uploading event image ",
+						e);
+			} catch (Exception e) {
+				LOGGER.error(
+						"Exception occurred while processing event image ", e);
+			}
+		}
 	}
 }

@@ -151,6 +151,20 @@
 				<td><%=event.getEventName()%></td>
 			</tr>
 			<tr>
+				<td class="bold" width="20%">Type</td>
+				<td><%=event.getIsChargeable()%></td>
+			</tr>
+			<%
+				if (event.getIsChargeable().equals("Paid")) {
+			%>
+			<tr>
+				<td class="bold" width="20%">Fee</td>
+				<td><%=event.getFee()%></td>
+			</tr>
+			<%
+				}
+			%>
+			<tr>
 				<td class="bold">Start Date & Time</td>
 				<td><%=DateUtil.getOnlyDate(event.getStartDate()) + " "
 						+ event.getStartTime()%></td>
@@ -208,7 +222,20 @@
 				<td class="bold">Terms & conditions</td>
 				<td><%=event.getTermsConditions()%></td>
 			</tr>
-
+			<tr>
+				<td class="bold">Banner</td>
+				<td>
+				<%
+					if(event.getFilePath() != null && event.getFilePath() != "") {
+						%><a href="<%=event.getFilePath() %>" title="view file"><img src="<%=event.getFilePath()%>"  height="15%" width="15%" alt="<%=event.getFilePath()%>"/></a><%
+					}else {
+						%>
+						<a href="upload-event-banner.jsp?id=<%=event.getId()%>">Upload File</a>
+						<%
+					}
+				%>
+				</td>
+			</tr>
 			<%
 				}
 			%>

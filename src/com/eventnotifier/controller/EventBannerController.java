@@ -1,6 +1,7 @@
 package com.eventnotifier.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,32 +12,31 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.eventnotifier.model.State;
-import com.eventnotifier.service.StateService;
-import com.eventnotifier.service.impl.StateServiceImpl;
+import com.eventnotifier.model.Event;
+import com.eventnotifier.service.EventService;
+import com.eventnotifier.service.impl.EventServiceImpl;
 import com.eventnotifier.util.Constants;
 
 /**
  * Servlet implementation class EventController
  */
-@WebServlet("/StateController")
-public class StateController extends HttpServlet {
-	
+@WebServlet("/EventBannerController")
+public class EventBannerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final Logger LOGGER = Logger
-			.getLogger(StateController.class);
+			.getLogger(EventBannerController.class);
 
-	private StateService stateService = null;
+	private EventService eventService = null;
 
 	public void init() throws ServletException {
-		this.stateService = new StateServiceImpl();
+		this.eventService = new EventServiceImpl();
 	}
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public StateController() {
+	public EventBannerController() {
 		super();
 	}
 
@@ -46,21 +46,11 @@ public class StateController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		final String action = request.getParameter(Constants.ACTION);
-		LOGGER.info("Action - " + action);
-		if (action.equals(Constants.ADD)) {
-			this.stateService.addState(request, response);
-			response.sendRedirect(request.getContextPath()
-					+ "/state-acknowledgement.jsp");
-		} else if (action.equals(Constants.VIEW_LIST)) {
-			List<State> stateList = this.stateService.getStateList(request,
-					response);
-			request.setAttribute("stateList", stateList);
-			request.getRequestDispatcher("view-state-list.jsp").forward(
-					request, response);
-		} else if (action.equals(Constants.UPDATE)) {
-		} else if (action.equals(Constants.DELETE)) {
-		}
+		LOGGER.info("Uploading image");
+		this.eventService.uploadEventBanner(request, response);
+		request.getRequestDispatcher("event-banner-acknowledgement.jsp")
+				.forward(request, response);
+
 	}
 
 	/**

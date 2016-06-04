@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -22,8 +22,7 @@ public class BaseDAOImpl<T, ID extends Serializable> implements BaseDAO<T, ID> {
 
 	private SessionFactory sessionFactory;
 
-	private static final Logger LOGGER = Logger.getLogger(BaseDAOImpl.class
-			.getName());
+	private static final Logger LOGGER = Logger.getLogger(BaseDAOImpl.class);
 
 	public BaseDAOImpl(final Class<T> type) {
 		super();
@@ -39,7 +38,6 @@ public class BaseDAOImpl<T, ID extends Serializable> implements BaseDAO<T, ID> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public T save(final T entity) {
-		LOGGER.info("\n\nsave method of BaseDAOImpl called....");
 		T savedEntity = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = null;
@@ -47,8 +45,9 @@ public class BaseDAOImpl<T, ID extends Serializable> implements BaseDAO<T, ID> {
 			tx = session.beginTransaction();
 			savedEntity = (T) session.save(entity);
 			tx.commit();
+			LOGGER.info(entity + " saved successfully");
 		} catch (Exception e) {
-
+			LOGGER.error("Exception occurred while saving " + entity, e);
 		}
 
 		return savedEntity;
@@ -57,31 +56,28 @@ public class BaseDAOImpl<T, ID extends Serializable> implements BaseDAO<T, ID> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public T read(ID id) {
-		LOGGER.info("read method of BaseDAOImpl called....");
 		T entity = null;
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		try {
-			System.out.println("id is " + id);
-			System.out.println("type is " + this.type.toString());
 			entity = (T) session.get(this.type, id);
 		} catch (Exception e) {
-
+			LOGGER.error(
+					"Exception occurred while getting details of id " + id, e);
 		}
 		return entity;
 	}
 
 	@Override
 	public void update(T entity) {
-		LOGGER.info("\n\n update method of BaseDAOImpl called....");
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
 			session.update(entity);
 			tx.commit();
-			LOGGER.info("Entity updated successfully");
+			LOGGER.info(entity + " updated successfully");
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.error("Exception occurred while updating " + entity, e);
 		}
 	}
 
@@ -93,9 +89,9 @@ public class BaseDAOImpl<T, ID extends Serializable> implements BaseDAO<T, ID> {
 			tx = session.beginTransaction();
 			session.delete(entity);
 			tx.commit();
-			LOGGER.info(entity + " is deleted successfully");
+			LOGGER.info(entity + " deleted successfully");
 		} catch (Exception e) {
-
+			LOGGER.error("Exception occurred while deleting " + entity, e);
 		}
 	}
 
@@ -123,7 +119,7 @@ public class BaseDAOImpl<T, ID extends Serializable> implements BaseDAO<T, ID> {
 				criteria.addOrder(Order.asc(orderBy));
 			list = criteria.list();
 		} catch (Exception e) {
-
+			LOGGER.error("Exception occurred while getting list", e);
 		}
 		return list;
 	}
@@ -143,7 +139,6 @@ public class BaseDAOImpl<T, ID extends Serializable> implements BaseDAO<T, ID> {
 	@Override
 	public boolean changeStatus(T instance) {
 		boolean status = false;
-		LOGGER.info("\n\n change status method of BaseDAOImpl called....");
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = null;
 		try {
@@ -151,10 +146,10 @@ public class BaseDAOImpl<T, ID extends Serializable> implements BaseDAO<T, ID> {
 			session.update(instance);
 			tx.commit();
 			status = true;
-			LOGGER.info("Status updated successfully");
+			LOGGER.info("Status changed successfully");
 		} catch (Exception e) {
 			status = false;
-			e.printStackTrace();
+			LOGGER.error("Exception occurred while changing status ", e);
 		}
 		return status;
 	}

@@ -44,7 +44,7 @@ public class MessageController extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		final String action = request.getParameter(Constants.ACTION);
-		LOGGER.info("Message controller called with action - " + action);
+		LOGGER.info("Action - " + action);
 		if (action.equals(Constants.INBOX)) {
 			this.messageService = new MessageServiceImpl();
 			List<Message> messageList = this.messageService.inbox(request,

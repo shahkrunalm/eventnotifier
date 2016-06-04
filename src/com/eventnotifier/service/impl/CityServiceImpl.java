@@ -38,6 +38,7 @@ public class CityServiceImpl implements CityService {
 	private void loadActiveCities(HttpServletRequest request, CityDAO cityDAO) {
 		request.getServletContext().setAttribute("loadedCityList",
 				this.cityDAO.getListByCriteria(new City(), "cityName", 1));
+		LOGGER.info("Loaded active cities");
 	}
 
 	@Override

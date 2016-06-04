@@ -11,8 +11,11 @@
 		<welcome-file>index.htm</welcome-file>
 		<welcome-file>default.html</welcome-file>
 		<welcome-file>default.htm</welcome-file>
-
 	</welcome-file-list>
+	<context-param>
+		<param-name>uploadpath</param-name>
+		<param-value>F:/eclipse-workspace/hibernate-workspace/eventnotifier/WebContent</param-value>
+	</context-param>
 	<error-page>
 		<exception-type>java.lang.Exception</exception-type>
 		<location>/page-not-found.jsp</location>

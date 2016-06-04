@@ -1,16 +1,44 @@
 pending
-
 upload event image in event-acknowledgement file
-Event paid/fee. visible text box based on condition
 edit event
+search module
+use servlet filters to request mapping
+add-city, add-state pages are accessible by normal user - restrict them
+session timeout in web.xml
+-----------------------
+Hibernate ORM tool
+-> 1st level caching
+-> automatic creation of table due to hbm.ddl.auto configuration in hibernate.cfg.xml file
+-> Relationship managed through POJO classes
+-> no need to add/remove column manually
+DAO design pattern
+-> controller, service and dao classes
+-> Minimal changes in dao layer only if there is a change in database
+-> loosely couple code
+-> controller class - for controlling
+-> service class - for business logic
+-> dao class - database related operation
+DRY pattern
+-> Don't repeat yourself
+git version control system
+-> distributed
+-> in case of failure, master copy in git
+-> no manual editing, no merge conflict
+Logger implement
+-> which package used for logging
+-> logger level
+-> error will be immediately indetified due to logging
+
 -----------------------
 scheduler
+Logout once signout
 feedback module
 future enhancement
 email notification
 multiple category subscription
 favourite event
-upload event image
+multiple event upload
+junit testcase
 ----------------------
 Hi,
 

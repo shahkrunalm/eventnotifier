@@ -41,7 +41,7 @@ public class CategoryController extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		final String action = request.getParameter(Constants.ACTION);
-		LOGGER.info("Category controller called with action - " + action);
+		LOGGER.info("Action - " + action);
 		if (action.equals(Constants.ADD)) {
 			CategoryService categoryService = new CategoryServiceImpl();
 			categoryService.addCategory(request, response);
@@ -49,9 +49,11 @@ public class CategoryController extends HttpServlet {
 					+ "/category-acknowledgement.jsp");
 		} else if (action.equals(Constants.VIEW_LIST)) {
 			CategoryService categoryService = new CategoryServiceImpl();
-			List<Category> categoryList = categoryService.getCategoryList(request, response);
+			List<Category> categoryList = categoryService.getCategoryList(
+					request, response);
 			request.setAttribute("categoryList", categoryList);
-			request.getRequestDispatcher("view-category-list.jsp").forward(request, response);
+			request.getRequestDispatcher("view-category-list.jsp").forward(
+					request, response);
 		} else if (action.equals(Constants.UPDATE)) {
 		} else if (action.equals(Constants.DELETE)) {
 		}

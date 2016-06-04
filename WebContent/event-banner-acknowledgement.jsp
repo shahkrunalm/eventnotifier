@@ -12,7 +12,7 @@
 	<div class="container wow fadeInDown">
 		<table width="100%" id="table-page-heading">
 			<tr>
-				<td colspan="2">Event Acknowledgement</td>
+				<td colspan="2">Event Banner Acknowledgement</td>
 			</tr>
 		</table>
 		<table width="100%" id="table-with-padding">
@@ -20,14 +20,7 @@
 				<td></td>
 			</tr>
 			<tr>
-				<td>Your event details are stored successfully.</td>
-			</tr>
-
-			<tr>
-				<td></td>
-			</tr>
-			<tr>
-				<td>We will verify your event details and update you soon.</td>
+				<td>Your event banner uploaded successfully.</td>
 			</tr>
 			<tr>
 				<td></td>

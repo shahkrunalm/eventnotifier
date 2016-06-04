@@ -27,7 +27,7 @@ public class LoadOnStartUp extends HttpServlet {
 	private static final Logger LOGGER = Logger.getLogger(LoadOnStartUp.class);
 
 	public void init() throws ServletException {
-		LOGGER.info("init() method of LoadOnStartUp called");
+		LOGGER.info("init() method called");
 		/**
 		 * Upcoming event list
 		 */

@@ -43,4 +43,6 @@ public interface EventService {
 	List<Event> getOnGoingEventList() throws ParseException;
 
 	List<Event> getPastEventList();
+	
+	void uploadEventBanner(HttpServletRequest request, HttpServletResponse response);
 }

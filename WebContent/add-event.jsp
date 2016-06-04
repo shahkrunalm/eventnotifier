@@ -15,8 +15,14 @@
 </head>
 <body class="homepage">
 	<%@ include file="corlate-header.jsp"%>
+	<%
+	if (user == null) {
+		response.sendRedirect(request.getContextPath()
+				+ "/login.jsp?code=3");
+	}
+	%>
 	<div class="container wow fadeInDown">
-		<table border="0" width="100%" id="table-page-heading">
+		<table width="100%" id="table-page-heading">
 			<tr>
 				<td>Add Event</td>
 			</tr>
@@ -141,8 +147,8 @@
 				</tr>
 				<tr>
 					<td class="bold" width="10%">Type</td>
-					<td><input type="radio" name="isChargeable" /> paid <input
-						type="radio" name="isChargeable" /> free</td>
+					<td><input type="radio" id="paidEvent" name="isChargeable" value="Paid" /> paid <input
+						type="radio" id="freeEvent" name="isChargeable" value="Free" /> free</td>
 				</tr>
 				<tr>
 					<td class="bold" width="10%">Fee</td>
@@ -238,7 +244,7 @@
 										email : true
 									},
 									fee : {
-										required : "#isChargeable:checked"
+										required : "#paidEvent:checked"
 									}
 								}
 							});

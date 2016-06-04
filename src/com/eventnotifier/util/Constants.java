@@ -30,4 +30,5 @@ public class Constants {
 	public static final String CITY = "city";
 	public static final String CATEGORY = "category";
 	public static final String CHECK_USER_NAME = "check-user-name";
+	public static final String UPLOAD_EVENT_BANNER = "upload-event-banner";
 }

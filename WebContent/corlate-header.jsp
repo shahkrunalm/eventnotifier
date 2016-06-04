@@ -50,7 +50,7 @@
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="index.jsp"><img
-					src="images/logo.png" alt="logo"></a>
+					src="images/logo.png" alt="logo" height="42px" width="115px"></a>
 			</div>
 			<%
 				if (user == null) {

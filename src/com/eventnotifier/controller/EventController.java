@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
@@ -30,7 +31,6 @@ public class EventController extends HttpServlet {
 	private EventService eventService = null;
 
 	public void init() throws ServletException {
-		LOGGER.info("init() method of EventController called");
 		this.eventService = new EventServiceImpl();
 	}
 
@@ -39,7 +39,6 @@ public class EventController extends HttpServlet {
 	 */
 	public EventController() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -49,7 +48,7 @@ public class EventController extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		final String action = request.getParameter(Constants.ACTION);
-		LOGGER.info("Event controller called with action - " + action);
+		LOGGER.info("Action - " + action);
 		if (action.equals(Constants.ADD)) {
 			this.eventService.addEvent(request, response);
 			response.sendRedirect(request.getContextPath()
@@ -58,6 +57,7 @@ public class EventController extends HttpServlet {
 			Event event = this.eventService.viewEvent(request, response);
 			if (event != null) {
 				request.setAttribute("event", event);
+				request.getSession().setAttribute("evnt", event);
 			} else {
 				request.setAttribute("message", "no event found");
 			}
@@ -118,11 +118,17 @@ public class EventController extends HttpServlet {
 			request.getRequestDispatcher("view-criteria-wise-event-list.jsp")
 					.forward(request, response);
 
-		}  else if (action.equals(Constants.SEARCH)) {
+		} else if (action.equals(Constants.SEARCH)) {
 			List<Event> eventList = this.eventService.getEventListBySearch(
 					request, response);
 			request.setAttribute("eventList", eventList);
 			request.getRequestDispatcher("search-result-event-list.jsp")
+					.forward(request, response);
+
+		} else if (action.equals(Constants.UPLOAD_EVENT_BANNER)) {
+			this.eventService.uploadEventBanner(
+					request, response);
+			request.getRequestDispatcher("event-banner-acknowledgement.jsp")
 					.forward(request, response);
 
 		}

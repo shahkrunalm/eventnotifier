@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 import com.eventnotifier.model.User;
 import com.eventnotifier.service.UserService;
 import com.eventnotifier.service.impl.UserServiceImpl;
@@ -24,6 +26,7 @@ import com.eventnotifier.util.DateUtil;
 @WebServlet("/UserController")
 public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOGGER = Logger.getLogger(UserController.class);
 	private UserService userService = null;
 
 	/**
@@ -44,6 +47,7 @@ public class UserController extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		final String action = request.getParameter(Constants.ACTION);
+		LOGGER.info("Action - " + action);
 		if (action.equals(Constants.LOGIN)) {
 			User user = this.userService.login(request, response);
 			if (user != null) {

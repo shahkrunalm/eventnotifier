@@ -33,11 +33,11 @@ public class CategoryServiceImpl implements CategoryService {
 
 	private void loadActiveCategories(HttpServletRequest request,
 			CategoryDAO categoryDAO) {
-
 		request.getServletContext().setAttribute(
 				"loadedCategoryList",
 				categoryDAO
 						.getListByCriteria(new Category(), "categoryName", 1));
+		LOGGER.info("Loaded active categories");
 	}
 
 	@Override

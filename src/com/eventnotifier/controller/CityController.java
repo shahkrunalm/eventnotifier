@@ -43,7 +43,7 @@ public class CityController extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		final String action = request.getParameter(Constants.ACTION);
-		LOGGER.info("City controller called with action - " + action);
+		LOGGER.info("Action - " + action);
 		if (action.equals(Constants.ADD)) {
 			this.cityService.addCity(request, response);
 			response.sendRedirect(request.getContextPath()
@@ -60,7 +60,8 @@ public class CityController extends HttpServlet {
 			List<City> cityList = this.cityService.getCities(request, response);
 			StringBuffer sb = new StringBuffer();
 			for (City city : cityList) {
-				sb.append(city.getCityId() + ":" +city.getCityName()).append(",");
+				sb.append(city.getCityId() + ":" + city.getCityName()).append(
+						",");
 			}
 			PrintWriter out = response.getWriter();
 			out.print(sb);
